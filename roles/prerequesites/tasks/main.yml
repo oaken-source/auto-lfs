@@ -1,0 +1,6 @@
+---
+# this sets up the prerequesites for lfs bootstrapping in the virtual machine
+
+- name: Update the server
+  apt: update_cache=yes upgrade=full cache_valid_time=172800
+  sudo: yes

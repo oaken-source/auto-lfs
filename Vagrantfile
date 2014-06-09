@@ -23,10 +23,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
                 
     vb.customize [ "modifyvm", :id, "--memory", VM_MEMORY ]
     vb.customize [ "modifyvm", :id, "--ioapic", "on" ]
-    vb.customize [ "modifyvm", :id, "--cpus", VM_CPUS ]   
+    vb.customize [ "modifyvm", :id, "--cpus", VM_CPUS ]
   end
 
+  config.vm.network :private_network, ip: "192.168.22.22"
+
   # initiate bootstrap process
-  config.vm.provision :shell, :inline => "cd /vagrant/lfs && " + 
-      (ENV['QUIET'] ? "" : "DEBUG=1") + " ./bootstrap.sh"
+  config.vm.provision :shell, :inline => "cd /vagrant/lfs && ./bootstrap.sh"
 end

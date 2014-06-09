@@ -1,9 +1,9 @@
 #!/bin/bash
 
- # This file is used to prepare the host on which the bootstrapping virtual
- # machine is executed. This is the only script of this project that requries
- # human interaction, everything else is completely automated.
+ # this script is the entry to auto-lfs. It checks for required host 
+ # capabilities and initiates the auto build
  ############################################################################## 
+
 
 set -e
 set -u
@@ -26,4 +26,18 @@ if ! vagrant --help > /dev/null; then
   exit 1
 fi
 
-echo "done."
+# check for ansible installation
+if ! ansible-playbook --version > /dev/null; then
+  echo " [!] missing ansible. install ansible and continue"
+  exit 1
+fi
+
+vagrant up --provision
+
+sleep 5
+
+if [ -n "${DEBUG:-}" ]; then
+  verbose="-vvv"
+fi
+
+ansible-playbook -i inventory site.yml ${verbose:-} --private-key files/id_rsa

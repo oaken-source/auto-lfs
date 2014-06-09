@@ -1,0 +1,9 @@
+---
+# this is the main playbook for auto-lfs
+
+- name: set up required prerequesite packages
+  hosts: all
+  remote_user: provision
+
+  roles:
+    - prerequesites
