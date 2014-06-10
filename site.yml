@@ -6,4 +6,4 @@
   remote_user: provision
 
   roles:
-    - prerequesites
+    - 00_prerequesites
