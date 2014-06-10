@@ -12,6 +12,19 @@ if [ -n "${DEBUG:-}" ]; then
   set -x
 fi
 
+# start fresh, if -c was given
+while getopts ":c" opt; do
+  case $opt in
+    c)
+      vagrant destroy -f
+      ;;
+    \?)
+      echo "Invalid option: -$OPTARG" >&2
+      exit 1
+      ;;
+  esac
+done
+
 # fetch LFS book
 vers=7.5
 book=LFS-BOOK-${vers}.pdf
@@ -32,9 +45,11 @@ if ! ansible-playbook --version > /dev/null; then
   exit 1
 fi
 
-vagrant up --provision
+vagrant up
 
-sleep 5
+while ! ssh -i files/id_rsa -q provision@192.168.22.22 exit; do
+  sleep 1
+done
 
 if [ -n "${DEBUG:-}" ]; then
   verbose="-vvv"

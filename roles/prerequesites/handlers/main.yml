@@ -1,0 +1,12 @@
+---
+# handlers for the prerequesites for lfs bootstrapping in the virtual machine
+
+- name: restart machine
+  shell: reboot &
+  sudo: yes
+
+- name: wait until down
+  local_action: wait_for host={{ansible_ssh_host}} port={{ansible_ssh_port}} state=stopped
+
+- name: wait until up
+  local_action: wait_for host={{ansible_ssh_host}} port={{ansible_ssh_port}} delay=2

@@ -1,6 +1,122 @@
 ---
 # this sets up the prerequesites for lfs bootstrapping in the virtual machine
 
+- name: Add GNU backport PPA
+  apt_repository: repo=ppa:dns/gnu
+  sudo: yes
+
 - name: Update the server
   apt: update_cache=yes upgrade=full cache_valid_time=172800
+  sudo: yes
+
+- name: Install Bash>=3.2
+  apt: name=bash state=latest
+  sudo: yes
+
+- name: Update /bin/sh symlink
+  alternatives: name=sh link=/bin/sh path=/bin/bash
+  sudo: yes
+
+- name: Install binutils>=2.17<=2.24
+  apt: name=binutils-dev state=latest
+  sudo: yes
+
+- name: Install bison>=2.3
+  apt: name=bison state=latest
+  sudo: yes
+
+- name: Update /usr/bin/yacc symlink
+  alternatives: name=yacc link=/usr/bin/yacc path=/usr/bin/bison
+  sudo: yes
+
+- name: Install bzip2>=1.0.4
+  apt: name=bzip2 state=latest
+  sudo: yes
+
+- name: Install coreutils>=6.9
+  apt: name=coreutils state=latest
+  sudo: yes
+
+- name: Install diffutils>=2.8.1
+  apt: name=diffutils state=latest
+  sudo: yes
+
+- name: Install findutils>=4.2.31
+  apt: name=findutils state=latest
+  sudo: yes
+
+- name: Install gawk>=4.0.1
+  apt: name=gawk state=latest
+  sudo: yes
+
+- name: Update /usr/bin/awk symlink
+  alternatives: name=awk link=/usr/bin/awk path=/usr/bin/gawk
+  sudo: yes
+
+- name: Install gcc>=4.1.2
+  apt: name=build-essential state=latest
+  sudo: yes
+
+- name: Install libgmp
+  apt: name=libgmp-dev state=latest
+  sudo: yes
+
+- name: Install libmpfr
+  apt: name=libmpfr-dev state=latest
+  sudo: yes
+
+- name: Install libmpc
+  apt: name=libmpc-dev state=latest
+  sudo: yes
+
+- name: Install glibc>=2.5.1
+  apt: name=libc6-dev state=latest
+  sudo: yes
+
+- name: Install grep>=2.5.1a
+  apt: name=grep state=latest
+  sudo: yes
+
+- name: Install gzip>=1.3.12
+  apt: name=gzip state=latest
+  sudo: yes
+
+- name: Install Linux Kernel >= 2.6.32
+  apt: name=linux-image-generic state=latest
+  sudo: yes
+  notify: 
+    - restart machine
+    - wait until down
+    - wait until up
+
+- name: Install Linux Kernel Headers >= 2.6.32
+  apt: name=linux-headers-generic state=latest
+  sudo: yes
+
+- name: Install m4>=1.4.10
+  apt: name=m4 state=latest
+  sudo: yes
+
+- name: Install make>=3.81
+  apt: name=make state=latest
+  sudo: yes
+
+- name: Install patch>=2.5.4
+  apt: name=patch state=latest
+  sudo: yes
+
+- name: Install perl>=5.8.8
+  apt: name=perl state=latest
+  sudo: yes
+
+- name: Install sed>=4.1.5
+  apt: name=sed state=latest
+  sudo: yes
+
+- name: Install tar>=1.18
+  apt: name=tar state=latest
+  sudo: yes
+
+- name: Install xz>=5.0.0
+  apt: name=xz-utils state=latest
   sudo: yes

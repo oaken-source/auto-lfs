@@ -1,6 +1,6 @@
  
  # This file describes the environment of the Ubuntu 12.04 LTS virtual machine 
- # used to bootstrap GNU/Minix.
+ # used to bootstrap LFS.
  ############################################################################## 
 
 VAGRANTFILE_API_VERSION = "2"
