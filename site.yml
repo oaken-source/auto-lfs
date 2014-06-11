@@ -7,3 +7,4 @@
 
   roles:
     - 00_prerequesites
+    - 02_preparation

@@ -1,0 +1,50 @@
+---
+# this script sets up the partition required by and described in lfs chapter 2
+
+- name: Create LFS mount points
+  file: path={{ item }} state=directory
+  sudo: yes
+  with_items:
+    - /mnt/lfs
+    - /mnt/lfs/boot
+
+- name: Set partition label
+  shell: creates=/dev/sdb1 parted -s -- /dev/sdb mklabel gpt
+  sudo: yes
+  register: partitioning
+
+- name: Create partitions
+  shell: parted -s -- /dev/sdb mkpart primary {{ item.type }} {{ item.start }} {{ item.end }}
+  sudo: yes
+  when: partitioning|changed
+  with_items:
+    - { type: 'ext2', start: '0', end: '32mb' } # boot
+    - { type: 'linux-swap', start: '32mb', end: '1056mb' } # swap
+    - { type: 'ext3', start: '1056mb', end: '-1' } # root
+
+- name: Create ext* filesystems
+  filesystem: dev={{ item.node }} fstype={{ item.type }}
+  sudo: yes
+  with_items:
+    - { node: '/dev/sdb1', type: 'ext2' }
+    - { node: '/dev/sdb3', type: 'ext3' }
+  
+- name: Create swap space
+  shell: mkswap /dev/sdb2
+  sudo: yes
+  when: partitioning|changed
+
+- name: Enable swapping
+  shell: swapon /dev/sdb2
+  sudo: yes
+  when: partitioning|changed
+
+- name: Update /etc/fstab
+  shell: echo "{{ item }}" >> /etc/fstab
+  sudo: yes
+  when: partitioning|changed
+  with_items:
+    - "/dev/sdb3\t/mnt/lfs\text3\tdefaults\t0\t2"
+    - "/dev/sdb1\t/mnt/lfs/boot\text2\tdefaults\t0\t2"
+    - "/dev/sdb2\tnone\t\tswap\tsw\t\t0\t0"
+

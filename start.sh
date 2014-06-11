@@ -45,8 +45,10 @@ if ! ansible-playbook --version > /dev/null; then
   exit 1
 fi
 
+# start virtual machine, perform bootstrapping provisioning by vagrant
 vagrant up
 
+# wait for ssh interface to become available
 while ! ssh -i files/id_rsa -q provision@192.168.22.22 exit; do
   sleep 1
 done
