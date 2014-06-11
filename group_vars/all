@@ -1,0 +1,4 @@
+---
+# deployment variables go here
+
+LFS: /mnt/lfs

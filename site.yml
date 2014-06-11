@@ -1,10 +1,10 @@
 ---
 # this is the main playbook for auto-lfs
 
-- name: set up required prerequesite packages
+- name: Prepare the virtual bootstrapping host
   hosts: all
   remote_user: provision
-
+  sudo: yes
   roles:
     - 00_prerequesites
     - 02_preparation

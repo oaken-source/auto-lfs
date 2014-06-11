@@ -3,15 +3,12 @@
 
 - name: Add GNU backport PPA
   apt_repository: repo=ppa:dns/gnu
-  sudo: yes
 
 - name: Update the server
   apt: update_cache=yes upgrade=full cache_valid_time=172800
-  sudo: yes
 
 - name: Install package dependencies
   apt: name={{ item }} state=latest
-  sudo: yes
   with_items:
     - build-essential
     - bash
@@ -39,7 +36,6 @@
 
 - name: Update program symlinks
   alternatives: name={{ item.name }} link={{ item.link }} path={{ item.path }}
-  sudo: yes
   with_items:
     - { name: 'sh', link: '/bin/sh', path: '/bin/bash' }
     - { name: 'yacc', link: '/usr/bin/yacc', path: '/usr/bin/bison' }
@@ -48,16 +44,13 @@
 # kernel updates, and required reboots seems to break vagrant integration.
 #- name: Install Linux Kernel >= 2.6.32
 #  apt: name=linux-image-generic state=latest
-#  sudo: yes
 #  register: kernel
 #
 #- name: Install Linux Kernel Headers >= 2.6.32
 #  apt: name=linux-headers-generic state=latest
-#  sudo: yes
 #
 #- name: Restart machine if kernel changed
 #  shell: reboot &
-#  sudo: yes
 #  when: kernel|changed
 #
 #- name: Wait until down
