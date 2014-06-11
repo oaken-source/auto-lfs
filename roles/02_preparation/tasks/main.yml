@@ -1,11 +1,5 @@
 ---
-# this script sets up the partition required by and described in lfs chapter 2
-
-- name: Create LFS mount points
-  file: path={{ item }} state=directory
-  with_items:
-    - "{{ LFS }}/"
-    - "{{ LFS }}/boot/"
+# this script describes the partition required by lfs in chapter 2
 
 - name: Set partition label
   shell: creates=/dev/sdb1 parted -s -- /dev/sdb mklabel gpt

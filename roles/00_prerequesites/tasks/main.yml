@@ -1,5 +1,5 @@
 ---
-# this sets up the prerequesites for lfs bootstrapping in the virtual machine
+# this script described the prerequesites for LFS bootstrapping
 
 - name: Add GNU backport PPA
   apt_repository: repo=ppa:dns/gnu
@@ -9,39 +9,15 @@
 
 - name: Install package dependencies
   apt: name={{ item }} state=latest
-  with_items:
-    - build-essential
-    - bash
-    - binutils
-    - bison
-    - bzip2
-    - coreutils
-    - diffutils
-    - findutils
-    - gawk
-    - gcc
-    - g++
-    - libgmp-dev
-    - libmpfr-dev
-    - libmpc-dev
-    - libc6-dev
-    - gzip
-    - m4
-    - make
-    - patch
-    - perl
-    - sed
-    - tar
-    - xz-utils
+  with_items: packages
 
 - name: Update program symlinks
   alternatives: name={{ item.name }} link={{ item.link }} path={{ item.path }}
-  with_items:
-    - { name: 'sh', link: '/bin/sh', path: '/bin/bash' }
-    - { name: 'yacc', link: '/usr/bin/yacc', path: '/usr/bin/bison' }
-    - { name: 'awk', link: '/usr/bin/awk', path: '/usr/bin/gawk' }
+  with_items: symlinks
 
 # kernel updates, and required reboots seems to break vagrant integration.
+# however, the provided kernel version should be sufficient. (postponing)
+# 
 #- name: Install Linux Kernel >= 2.6.32
 #  apt: name=linux-image-generic state=latest
 #  register: kernel
