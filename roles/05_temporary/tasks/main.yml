@@ -39,3 +39,6 @@
 
 - name: 5.14. Check-0.9.12
   script: 05.14.check-0.9.12.sh creates=/tools/bin/checkmk
+
+- name: 5.15. Ncurses-5.9
+  script: 05.15.ncurses-5.9.sh creates=/tools/lib/libncursesw.so

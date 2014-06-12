@@ -45,11 +45,6 @@ if [ ! -f $book ]; then
   wget http://www.linuxfromscratch.org/lfs/downloads/$vers/$book
 fi
 
-# validate lfs packages
-pushd lfs/sources &> /dev/null
-md5sum -c --quiet --strict ../md5sums
-popd &> /dev/null
-
 # start virtual machine, perform bootstrapping provisioning by vagrant
 vagrant up
 
