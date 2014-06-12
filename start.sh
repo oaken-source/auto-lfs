@@ -12,6 +12,18 @@ if [ -n "${DEBUG:-}" ]; then
   set -x
 fi
 
+# check for vagrant installation
+if ! vagrant --help > /dev/null; then
+  echo " [!] missing vagrant. install vagrant and continue"
+  exit 1
+fi
+
+# check for ansible installation
+if ! ansible-playbook --version > /dev/null; then
+  echo " [!] missing ansible. install ansible and continue"
+  exit 1
+fi
+
 # start fresh, if -c was given
 while getopts ":c" opt; do
   case $opt in
@@ -30,20 +42,13 @@ vers=7.5
 book=LFS-BOOK-${vers}.pdf
 if [ ! -f $book ]; then
   echo " [*] fetching $book"
-  wget -q http://www.linuxfromscratch.org/lfs/downloads/$vers/$book
+  wget http://www.linuxfromscratch.org/lfs/downloads/$vers/$book
 fi
 
-# check for vagrant installation
-if ! vagrant --help > /dev/null; then
-  echo " [!] missing vagrant. install vagrant and continue"
-  exit 1
-fi
-
-# check for ansible installation
-if ! ansible-playbook --version > /dev/null; then
-  echo " [!] missing ansible. install ansible and continue"
-  exit 1
-fi
+# validate lfs packages
+pushd lfs/sources &> /dev/null
+md5sum -c --quiet --strict ../md5sums
+popd &> /dev/null
 
 # start virtual machine, perform bootstrapping provisioning by vagrant
 vagrant up

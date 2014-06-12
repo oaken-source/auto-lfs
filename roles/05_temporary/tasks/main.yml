@@ -1,0 +1,41 @@
+---
+# this script builds the temporary system as described by lfs chapter 5
+
+- name: Create build log directory
+  file: owner=lfs group=lfs path={{ LFS }}/logs state=directory
+  sudo: yes
+
+# the script module should support output redirection, but it doesn't. 
+# that is why there is a weird workaround in all the inner build scripts.
+- name: 5.4. Binutils-2.24 - Pass 1
+  script: 05.04.binutils-2.24-pass1.sh creates=/tools/bin/i686-lfs-linux-gnu-ld
+
+- name: 5.5. GCC-4.8.2 - Pass 1
+  script: 05.05.gcc-4.8.2-pass1.sh creates=/tools/bin/i686-lfs-linux-gnu-gcc
+
+- name: 5.6. Linux-3.13.3 API Headers
+  script: 05.06.linux-3.13.3-api-headers.sh creates=/tools/include/asm/a.out.h 
+
+- name: 5.7. Glibc-2.19
+  script: 05.07.glibc-2.19.sh creates=/tools/lib/ld-linux.so.2
+
+- name: 5.8. Libstdc++-4.8.2
+  script: 05.08.libstdc++-4.8.2.sh creates=/tools/lib/libstdc++.a
+
+- name: 5.9. Binutils-2.24 - Pass 2
+  script: 05.09.binutils-2.24-pass2.sh creates=/tools/bin/ld-new
+
+- name: 5.10. GCC-4.8.2 - Pass 2
+  script: 05.10.gcc-4.8.2-pass2.sh creates=/tools/bin/cc
+
+- name: 5.11. Tcl-8.6.1
+  script: 05.11.tcl-8.6.1.sh creates=/tools/lib/libtcl8.6.so
+
+- name: 5.12. Expect-5.45
+  script: 05.12.expect-5.45.sh creates=/tools/bin/expect
+
+- name: 5.13. DejaGNU-1.5.1
+  script: 05.13.dejagnu-1.5.1.sh creates=/tools/bin/runtest
+
+- name: 5.14. Check-0.9.12
+  script: 05.14.check-0.9.12.sh creates=/tools/bin/checkmk

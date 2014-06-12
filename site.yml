@@ -7,4 +7,12 @@
   sudo: yes
   roles:
     - 00_prerequesites
-    - 02_preparation
+    - 02_partitioning
+    - 03_packages
+    - 04_preparations
+
+- name: Build the LFS system
+  hosts: all
+  remote_user: lfs
+  roles:
+    - 05_temporary

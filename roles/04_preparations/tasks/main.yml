@@ -1,0 +1,47 @@
+---
+# this script describes the preparation required by lfs in chapter 4
+
+- name: Create lfs tools directory
+  file: path={{ LFS }}/tools/ state=directory
+
+- name: Create lfs tools symlink in /
+  file: src={{ LFS }}/tools/ dest=/tools state=link
+
+- name: Add the LFS user group
+  group: name=lfs state=present
+  register: useradd
+
+# use a shell command for user add, as currently the user module has no option
+# to change the skeleton files for the user
+- name: Add the LFS user
+  shell: useradd -s /bin/bash -g lfs -m -k /dev/null lfs
+  when: useradd|changed
+
+# use the user module to give the user a password though
+- name: Add the LFS user (part2)
+  user: append=yes groups=admin name=lfs password=$6$TkribZRo$zgCHK7WVACnCRVz23G6KlQrYSf9HSnrGiz4yj7uLAM/H62RDI991yUmyHOffIg2LVknsr6yP6pgdIdOiuUaMh1
+
+- name: Change ownership of LFS directories
+  file: path={{ item }} owner=lfs
+  with_items:
+    - "{{ LFS }}/tools/"
+    - "{{ LFS }}/sources/"
+
+- name: Install bash profile files
+  copy: src={{ item }} dest=/home/lfs owner=lfs group=lfs
+  with_items:
+    - ".bash_profile"
+    - ".bashrc"
+
+- name: Create .ssh directory for LFS user
+  file: group=lfs owner=lfs path=/home/lfs/.ssh state=directory
+
+- name: Install the public key of the LFS user
+  copy: group=lfs owner=lfs src=files/id_rsa.pub dest=/home/lfs/.ssh/id_rsa.pub
+
+- name: Install the private key of the LFS user
+  copy: group=lfs owner=lfs mode=0600 src=files/id_rsa dest=/home/lfs/.ssh/id_rsa
+
+- name: Update the authorized keys of the lfs user
+  copy: group=lfs owner=lfs src=files/id_rsa.pub dest=/home/lfs/.ssh/authorized_keys
+
