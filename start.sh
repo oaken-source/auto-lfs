@@ -18,6 +18,11 @@ if ! vagrant --help > /dev/null; then
   exit 1
 fi
 
+# make sure the vagrant-vbguest plugin is available
+if [ -z "$(vagrant plugin list | grep vagrant-vbguest)" ]; then
+  vagrant plugin install vagrant-vbguest
+fi
+
 # check for ansible installation
 if ! ansible-playbook --version > /dev/null; then
   echo " [!] missing ansible. install ansible and continue"
