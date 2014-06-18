@@ -1,0 +1,52 @@
+---
+# this script builds the basic system software as described by lfs chapter 6
+
+- name: Create virtual file system mountpoints
+  file: path={{ item }} state=directory
+  with_items:
+    - "{{ LFS }}/dev"
+    - "{{ LFS }}/proc"
+    - "{{ LFS }}/sys"
+    - "{{ LFS }}/run"
+
+- name: Create /dev/console device node
+  shell: creates={{ LFS }}/dev/console mknod -m 600 {{ LFS }}/dev/console c 5 1
+
+- name: Create /dev/null device node
+  shell: creates={{ LFS }}/dev/null mknod -m 666 {{ LFS }}/dev/null c 1 3
+
+# the mount module can't handle rebinds. using command instead
+- name: Bind /dev to /mnt/lfs/dev
+  command: creates={{ LFS }}/dev/sda mount --bind /dev {{ LFS }}/dev
+
+- name: Mount virtual file systems
+  command: mount -t {{ item.fs }} {{ item.fs }} {{ item.node }} {{ item.opts }}
+  register: result
+  failed_when: false
+  changed_when: false
+  with_items:
+    - { fs: 'devpts', node: "{{ LFS }}/dev/pts", opts: '-o gid=5,mode=620' }
+    - { fs: 'proc', node: "{{ LFS }}/proc", opts: '' }
+    - { fs: 'sysfs', node: "{{ LFS }}/sys", opts: '' }
+    - { fs: 'tmpfs', node: "{{ LFS }}/run", opts: '' }
+
+# the following does not work due to some awkwardness with test in the shell module.
+# using the script module instead (below)
+#- name: Test for $LFS/dev/shm symlink
+#  shell: test -h {{ LFS }}/dev/shm && test ! -d {{LFS }}/$(readlink {{ LFS }}/dev/shm)
+#  register: dev_shm_test
+#  failed_when: false
+#  changed_when: dev_shm_test.rc == 0
+#
+#- name: Create Directory honoring $LFS/dev/shm symlink
+#  shell: mkdir -p {{LFS }}/$(readlink {{ LFS }}/dev/shm)
+#  when: dev_shm_test|changed
+- name: Test for $LFS/dev/shm symlink
+  script: 06.02.shm_symlink.sh
+  register: dev_shm_symlink
+  changed_when: dev_shm_symlink.stdout.find("changed") == 1
+
+# start with the chrooted chapter 6 scripts
+# the behemoth header piece in each of these scripts handles chrooting and logs
+- name: 06.05. Creating Directories
+  script: 06.05.creating_directories.sh creates=/mnt/lfs/root 

@@ -11,8 +11,14 @@
     - 03_packages
     - 04_preparations
 
-- name: Build the LFS system
+- name: Build the temporary LFS system
   hosts: all
   remote_user: lfs
   roles:
     - 05_temporary
+
+- name: Build the real LFS system
+  hosts: all
+  remote_user: root
+  roles:
+    - 06_basic_system

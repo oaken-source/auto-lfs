@@ -42,3 +42,106 @@
 
 - name: 5.15. Ncurses-5.9
   script: 05.15.ncurses-5.9.sh creates=/tools/lib/libncursesw.so
+
+- name: 5.16. Bash-4.2
+  script: 05.16.bash-4.2.sh creates=/tools/bin/bash
+
+- name: 5.17. Bzip2-1.0.6
+  script: 05.17.bzip2-1.0.6.sh creates=/tools/bin/bzip2
+
+- name: 5.18. Coreutils-8.22
+  script: 05.18.coreutils-8.22.sh creates=/tools/bin/cp
+
+- name: 5.19. Diffutils-3.3
+  script: 05.19.diffutils-3.3.sh creates=/tools/bin/diff
+
+- name: 5.20. File-5.17
+  script: 05.20.file-5.17.sh creates=/tools/bin/file
+
+- name: 5.21. Findutils-4.4.2
+  script: 05.21.findutils-4.4.2.sh creates=/tools/bin/locate
+
+- name: 5.22. Gawk-4.1.0
+  script: 05.22.gawk-4.1.0.sh creates=/tools/bin/gawk
+
+- name: 5.23. Gettext-0.18.3.2
+  script: 05.23.gettext-0.18.3.2.sh creates=/tools/bin/xgettext
+
+- name: 5.24. Grep-2.16
+  script: 05.24.grep-2.16.sh creates=/tools/bin/grep
+
+- name: 5.25. Gzip-1.6
+  script: 05.25.gzip-1.6.sh creates=/tools/bin/gzip
+
+- name: 5.26. M4-1.4.17
+  script: 05.26.m4-1.4.17.sh creates=/tools/bin/m4
+
+- name: 5.27. Make-4.0
+  script: 05.27.make-4.0.sh creates=/tools/bin/make
+
+- name: 5.28. Patch-2.7.1
+  script: 05.28.patch-2.7.1.sh creates=/tools/bin/patch
+
+- name: 5.29. Perl-5.18.2
+  script: 05.29.perl-5.18.2.sh creates=/tools/bin/perl
+
+- name: 5.30. Sed-4.2.2
+  script: 05.30.sed-4.2.2.sh creates=/tools/bin/sed
+
+- name: 5.31. Tar-1.27.1
+  script: 05.31.tar-1.27.1.sh creates=/tools/bin/tar
+
+- name: 5.32. Texinfo-5.2
+  script: 05.32.texinfo-5.2.sh creates=/tools/bin/makeinfo
+
+- name: 5.33. Util-linux-2.24.1
+  script: 05.33.util-linux-2.24.1.sh creates=/tools/bin/col
+
+- name: 5.34. Xz-5.0.5
+  script: 05.34.xz-5.0.5.sh creates=/tools/bin/xz
+  register: build
+
+- name: Strip libraries
+  shell: strip --strip-debug /tools/lib/*
+  when: build|changed
+  failed_when: false
+
+- name: Strip executables
+  shell: /usr/bin/strip --strip-unneeded /tools/{,s}bin/*
+  when: build|changed
+  failed_when: false
+
+- name: Remove temporary documentation
+  shell: rm -rf /tools/{,share}/{info,man,doc}
+  when: build|changed
+
+- name: Change ownership of temporary system to root
+  file: path={{ LFS }}/tools state=directory recurse=yes owner=root group=root
+  sudo: yes
+
+# prepare ssh passwordless access for root
+- name: Create .ssh directory for root user
+  file: group=root owner=root path=/root/.ssh state=directory
+  sudo: yes
+
+- name: Install the public key of the LFS user
+  copy: group=root owner=root src=files/id_rsa.pub dest=/root/.ssh/id_rsa.pub
+  sudo: yes
+
+- name: Install the private key of the LFS user
+  copy: group=root owner=root mode=0600 src=files/id_rsa dest=/root/.ssh/id_rsa
+  sudo: yes
+
+- name: Update the authorized keys of the root user
+  copy: group=root owner=root src=files/id_rsa.pub dest=/root/.ssh/authorized_keys
+  sudo: yes
+
+# make sure $LFS is defined in root's environment
+- name: Install bash profile files
+  copy: src={{ item }} dest=/root/ owner=root group=root
+  sudo: yes
+  with_items:
+    - ".bash_profile"
+    - ".bashrc"
+
+  

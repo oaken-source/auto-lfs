@@ -3,6 +3,7 @@
 
 - name: Create lfs tools directory
   file: path={{ LFS }}/tools/ state=directory
+  register: tools_directory
 
 - name: Create lfs tools symlink in /
   file: src={{ LFS }}/tools/ dest=/tools state=link
@@ -23,6 +24,7 @@
 
 - name: Change ownership of LFS directories
   file: path={{ item }} owner=lfs
+  when: tools_directory|changed
   with_items:
     - "{{ LFS }}/tools/"
     - "{{ LFS }}/sources/"
