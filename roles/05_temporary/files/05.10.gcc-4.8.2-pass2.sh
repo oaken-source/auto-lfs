@@ -43,10 +43,10 @@ mv mpc-1.0.2 mpc
 mkdir ../gcc-build
 cd ../gcc-build
 
-CC=$LFS_TGT-gcc
-CXX=$LFS_TGT-g++
-AR=$LFS_TGT-ar
-RANLIB=$LFS_TGT-ranlib
+CC=$LFS_TGT-gcc                                     \
+CXX=$LFS_TGT-g++                                    \
+AR=$LFS_TGT-ar                                      \
+RANLIB=$LFS_TGT-ranlib                              \
 ../gcc-4.8.2/configure                              \
   --prefix=/tools                                   \
   --with-local-prefix=/tools                        \
