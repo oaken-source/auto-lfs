@@ -49,10 +49,10 @@
 # start with the chrooted chapter 6 scripts
 # the behemoth header piece in each of these scripts handles chrooting and logs
 - name: 06.05. Creating Directories
-  script: 06.05.creating_directories.sh creates={{ LFS }}/root 
+  script: 06.05.creating_directories.sh creates={{ LFS }}/root
 
 - name: Install $LFS/etc/passwd
-  copy: src={{ item }} dest={{ LFS }}/etc/{{ item }} owner=root group=root 
+  copy: src={{ item }} dest={{ LFS }}/etc/{{ item }} owner=root group=root
   with_items:
     - passwd
     - group
@@ -107,7 +107,7 @@
 
 - name: 06.22. Shadow-4.1.5.1
   script: 06.22.shadow-4.1.5.1.sh creates={{ LFS }}/bin/passwd
-  
+
 - name: 06.23. Psmisc-22.20
   script: 06.23.psmisc-22.20.sh creates={{ LFS }}/bin/killall
 
@@ -152,7 +152,7 @@
 
 - name: 06.37. Inetutils-1.9.2
   script: 06.37.inetutils-1.9.2.sh creates={{ LFS }}/bin/ping
-  
+
 - name: 06.38. Perl-5.18.2
   script: 06.38.perl-5.18.2.sh creates={{ LFS }}/usr/bin/perl5.18.2
 

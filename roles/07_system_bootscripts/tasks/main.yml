@@ -1,0 +1,8 @@
+---
+# this script installs the system bootscripts as described by lfs chapter 7
+
+- name: Install system configuration scripts
+  copy: src={{ item.file }} path={{ item.path }}/{{ item.file }}
+  with_items:
+    - { file: 'ifconfig.eth0', path: '/etc/sysconfig/' }
+

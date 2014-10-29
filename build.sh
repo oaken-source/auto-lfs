@@ -1,16 +1,13 @@
 #!/bin/bash
 
- # this script is the entry to auto-lfs. It checks for required host 
+ # this script is the entry to auto-lfs. It checks for required host
  # capabilities and initiates the auto build
- ############################################################################## 
+ ##############################################################################
 
 
 set -e
 set -u
-
-if [ -n "${DEBUG:-}" ]; then
-  set -x
-fi
+set -x
 
 # check for vagrant installation
 if ! vagrant --help > /dev/null; then
@@ -29,19 +26,6 @@ if ! ansible-playbook --version > /dev/null; then
   exit 1
 fi
 
-# start fresh, if -c was given
-while getopts ":c" opt; do
-  case $opt in
-    c)
-      vagrant destroy -f
-      ;;
-    \?)
-      echo "Invalid option: -$OPTARG" >&2
-      exit 1
-      ;;
-  esac
-done
-
 # fetch LFS book
 vers=7.5
 book=LFS-BOOK-${vers}.pdf
@@ -54,12 +38,9 @@ fi
 vagrant up
 
 # wait for ssh interface to become available
-while ! ssh -i files/id_rsa -q provision@192.168.22.22 exit; do
+while ! ssh -q admin@192.168.22.22 exit; do
+  echo " [-] Waiting for ssh"
   sleep 1
 done
 
-if [ -n "${DEBUG:-}" ]; then
-  verbose="-vvv"
-fi
-
-ansible-playbook -i inventory site.yml ${verbose:-} --private-key files/id_rsa
+ansible-playbook -i inventory site.yml $@
