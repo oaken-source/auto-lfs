@@ -10,8 +10,8 @@
 set -e
 set -u
 
-# server cache update
-pacman -Sy
+# server update
+pacman -Syu --noconfirm
 
 # install python
 pacman -S python2 --noconfirm

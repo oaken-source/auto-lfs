@@ -5,8 +5,8 @@
   hosts: all
   remote_user: admin
   sudo: yes
-#  roles:
-#    - 00_prerequesites
+  roles:
+    - 00_prerequesites
 #    - 02_partitioning
 #    - 03_packages
 #    - 04_preparations

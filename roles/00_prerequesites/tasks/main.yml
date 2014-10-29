@@ -1,39 +1,11 @@
 ---
 # this script described the prerequesites for LFS bootstrapping
 
-- name: Add GNU backport PPA
-  apt_repository: repo=ppa:dns/gnu
-
-- name: Update the server
-  apt: update_cache=yes upgrade=full cache_valid_time=172800
-
 - name: Install package dependencies
-  apt: name={{ item }} state=latest
+  pacman: name={{ item }} state=present
   with_items: packages
 
 - name: Update program symlinks
-  alternatives: name={{ item.name }} link={{ item.link }} path={{ item.path }}
+  file: path={{ item.path }} src={{ item.src }} state=link
   with_items: symlinks
-
-# kernel updates, and required reboots seems to break vagrant integration.
-# however, the provided kernel version should be sufficient. (postponing)
-# 
-#- name: Install Linux Kernel >= 2.6.32
-#  apt: name=linux-image-generic state=latest
-#  register: kernel
-#
-#- name: Install Linux Kernel Headers >= 2.6.32
-#  apt: name=linux-headers-generic state=latest
-#
-#- name: Restart machine if kernel changed
-#  shell: reboot &
-#  when: kernel|changed
-#
-#- name: Wait until down
-#  local_action: wait_for host={{ansible_ssh_host}} port={{ansible_ssh_port}} state=stopped
-#  when: kernel|changed
-#
-#- name: Wait until up
-#  local_action: wait_for host={{ansible_ssh_host}} port={{ansible_ssh_port}} delay=2
-#  when: kernel|changed
 
