@@ -1,7 +1,7 @@
 ---
 # this role describes the source packages used during the lfs build
 
-- name: Create sources directory
+- name: Create required directories
   file: path={{ LFS }}/sources state=directory
 
 - name: Fetch LFS wget-list and md5sums

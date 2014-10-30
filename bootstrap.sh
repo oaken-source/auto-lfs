@@ -32,5 +32,5 @@ chown admin:admin -R /home/admin/.ssh
 
 # install sudo
 pacman -S sudo --noconfirm
-echo "admin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+echo "%admin ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
