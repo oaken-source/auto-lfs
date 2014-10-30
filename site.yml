@@ -8,7 +8,7 @@
   roles:
     - 00_prerequesites
     - 02_partitioning
-#    - 03_packages
+    - 03_packages
 #    - 04_preparations
 #
 #- name: Build the temporary LFS system

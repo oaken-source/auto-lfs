@@ -1,0 +1,52 @@
+#!/usr/bin/python
+
+import os
+
+def wget_validate(module, strict=True):
+  md5 = module.params['md5sums']
+  fls = module.params['files']
+  cwd = os.path.dirname(fls)
+
+  binary = module.get_bin_path('md5sum', True)
+  cmd = [ binary, '-c', '--strict', md5 ]
+  (rc, out, err) = module.run_command(cmd, cwd=cwd, check_rc=strict)
+  return rc == 0
+
+def wget_fetch(module):
+  md5 = module.params['md5sums']
+  fls = module.params['files']
+  cwd = os.path.dirname(fls)
+
+  binary = module.get_bin_path('wget', True)
+  print binary
+  cmd = [ binary, '-c', '-i', fls, '-P', cwd ]
+  return module.run_command(cmd, check_rc=True)
+
+def main():
+  module = AnsibleModule(
+    argument_spec = dict(
+      files=dict(required=True, type='str'),
+      md5sums=dict(default=None, type='str'),
+    ),
+    supports_check_mode=False
+  )
+
+  (rc, out, err) = (None, "", "")
+
+  if module.params['md5sums'] is None or not wget_validate(module, strict=False):
+    (rc, out, err) = wget_fetch(module)
+  wget_validate(module)
+
+  result = { }
+  if rc is None:
+    result['changed'] = False
+  else:
+    result['changed'] = True
+
+  result['stdout'] = out
+  result['stderr'] = err
+
+  module.exit_json(**result)
+
+from ansible.module_utils.basic import *
+main()

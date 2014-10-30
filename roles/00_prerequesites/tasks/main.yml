@@ -1,11 +1,36 @@
 ---
-# This role installs required host packages
+# This role describes required host packages and symlinks
 
 - name: Install package dependencies
   pacman: name={{ item }} state=present
-  with_items: packages
+  with_items:
+    - bash
+    - binutils
+    - bison
+    - bzip2
+    - coreutils
+    - diffutils
+    - findutils
+    - gawk
+    - gcc
+    - glibc
+    - grep
+    - gzip
+    - linux
+    - linux-headers
+    - m4
+    - make
+    - parted
+    - patch
+    - perl
+    - sed
+    - tar
+    - wget
+    - xz
 
 - name: Update program symlinks
   file: path={{ item.path }} src={{ item.src }} state=link
-  with_items: symlinks
+  with_items:
+    - { path: '/bin/sh', src: '/bin/bash' }
+    - { path: '/usr/bin/awk', src: '/usr/bin/gawk' }
 

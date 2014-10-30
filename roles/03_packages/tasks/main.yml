@@ -1,5 +1,5 @@
 ---
-# this script describes the paackaging layout as required by lfs in chapter 3
+# this role describes the source packages used during the lfs build
 
 - name: Create sources directory
   file: path={{ LFS }}/sources state=directory
@@ -10,14 +10,5 @@
     - "http://www.linuxfromscratch.org/lfs/downloads/{{ VERS }}/wget-list"
     - "http://www.linuxfromscratch.org/lfs/downloads/{{ VERS }}/md5sums"
 
-# check if packages are present, and fetch them if necessary
-- name: Validate LFS package checksums
-  command: chdir={{ LFS }}/sources md5sum -c --quiet --strict {{ LFS }}/sources/md5sums
-  register: md5_result
-  changed_when: md5_result.rc != 0
-  failed_when: false
-
 - name: Fetch LFS packages
-  command: wget -Nqi {{ LFS }}/sources/wget-list -P {{ LFS }}/sources
-  when: md5_result|changed
-
+  wget: files={{ LFS }}/sources/wget-list md5sums={{ LFS }}/sources/md5sums

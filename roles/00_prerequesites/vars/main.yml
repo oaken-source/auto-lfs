@@ -24,6 +24,7 @@ packages:
   - perl
   - sed
   - tar
+  - wget
   - xz
 
 # list of required symlinks:
