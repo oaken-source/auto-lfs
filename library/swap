@@ -1,0 +1,70 @@
+#!/usr/bin/python
+
+def swap_active(module):
+  dev = module.params['dev']
+
+  binary = module.get_bin_path('swapon', True)
+  cmd = [ binary, '-s' ]
+  (rc, out, err) = module.run_command(cmd, check_rc=True)
+  match = re.match(r".*%s .*" % dev, out, re.DOTALL)
+  return match is not None
+
+def swap_on(module):
+  dev = module.params['dev']
+
+  if swap_active(module):
+    return (None, "", "")
+  binary = module.get_bin_path('mkswap', True)
+  cmd = [ binary, dev ]
+  (rc1, out1, err1) = module.run_command(cmd, check_rc=True)
+  binary = module.get_bin_path('swapon', True)
+  cmd = [ binary, dev ]
+  (rc2, out2, err2) = module.run_command(cmd, check_rc=True)
+
+  with open("/etc/fstab", "r") as f:
+    fstab = f.read()
+  match = re.match(r".*%s[ ][ ]*none[ ][ ]*swap.*" % dev, fstab, re.DOTALL)
+  if match is None:
+    with open("/etc/fstab", "a") as f:
+      f.write("%s none swap sw 0 0" % dev)
+
+  return (max(rc1, rc2), "%s\n%s" % (out1, out2), "%s\n%s" % (err1, err2))
+
+def swap_off(module):
+  dev = module.params['dev']
+
+  if not swap_active(module):
+    return (None, "", "")
+  binary = module.get_bin_path('swapoff', True)
+  cmd = [ binary, dev ]
+  return module.run_command(cmd, check_rc=True)
+
+def main():
+  module = AnsibleModule(
+    argument_spec = dict(
+      dev=dict(required=True, type='str'),
+      state=dict(default=True, type='bool'),
+    ),
+    supports_check_mode=False
+  )
+
+  (rc, out, err) = (None, None, None)
+
+  if module.params['state']:
+    (rc, out, err) = swap_on(module)
+  else:
+    (rc, out, err) = swap_off(module)
+
+  result = { }
+  if rc is None:
+    result['changed'] = False
+  else:
+    result['changed'] = True
+
+  result['stdout'] = out
+  result['stderr'] = err
+
+  module.exit_json(**result)
+
+from ansible.module_utils.basic import *
+main()

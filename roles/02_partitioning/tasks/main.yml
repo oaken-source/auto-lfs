@@ -1,39 +1,27 @@
 ---
-# this script describes the partitioning required by lfs in chapter 2
+# This role describes the partitioning of the lfs disk
 
 - name: Set partition label
-  shell: creates=/dev/sdb1 parted -s -- /dev/sdb mklabel gpt
-  register: partitioning
+  parted: dev=/dev/sdb label=gpt
 
 - name: Create partitions
-  shell: parted -s -- /dev/sdb mkpart primary {{ item.type }} {{ item.start }} {{ item.end }}
-  when: partitioning|changed
+  parted: dev=/dev/sdb partid={{ item.id }} fstype={{ item.type }} start={{ item.start }} end={{ item.end }}
   with_items:
-    - { type: 'ext2', start: '0', end: '32mb' } # boot
-    - { type: 'linux-swap', start: '32mb', end: '1056mb' } # swap
-    - { type: 'ext4', start: '1056mb', end: '-1' } # root
+    - { id: 1, type: 'ext2', start: '0', end: '32mb' }             # boot
+    - { id: 2, type: 'linux-swap', start: '32mb', end: '1056mb' }  # swap
+    - { id: 3, type: 'ext4', start: '1056mb', end: '-1' }          # root
 
 - name: Create ext* filesystems
-  filesystem: dev={{ item.node }} fstype={{ item.type }}
+  filesystem: dev={{ item.dev }} fstype={{ item.type }}
   with_items:
-    - { node: '/dev/sdb1', type: 'ext2' } # boot
-    - { node: '/dev/sdb3', type: 'ext4' } # root
+    - { dev: '/dev/sdb1', type: 'ext2' }  # boot
+    - { dev: '/dev/sdb3', type: 'ext4' }  # root
 
 - name: Mount partitions
   mount: fstype={{ item.type }} name={{ item.path }} src={{ item.node }} passno=2 state=mounted
   with_items:
-    - { node: '/dev/sdb3', path: "{{ LFS }}/", type: 'ext4' } # root
-    - { node: '/dev/sdb1', path: "{{ LFS }}/boot/", type: 'ext2' } # boot
+    - { node: '/dev/sdb3', path: "{{ LFS }}/", type: 'ext4' }       # root
+    - { node: '/dev/sdb1', path: "{{ LFS }}/boot/", type: 'ext2' }  # boot
 
-- name: Create swap space
-  shell: mkswap /dev/sdb2
-  when: partitioning|changed
-
-- name: Enable swapping
-  shell: swapon /dev/sdb2
-  when: partitioning|changed
-
-- name: Add swap entry to /etc/fstab
-  shell: echo "/dev/sdb2 none swap sw 0 0" >> /etc/fstab
-  when: partitioning|changed
-
+- name: Setup swap
+  swap: dev=/dev/sdb2

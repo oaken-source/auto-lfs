@@ -1,5 +1,5 @@
 ---
-# this script described the prerequesites for LFS bootstrapping
+# This role installs required host packages
 
 - name: Install package dependencies
   pacman: name={{ item }} state=present

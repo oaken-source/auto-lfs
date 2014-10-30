@@ -1,0 +1,89 @@
+#!/usr/bin/python
+
+import os
+import stat
+import re
+import string
+
+def check_dev(module):
+  dev = module.params['dev']
+
+  try:
+    assert stat.S_ISBLK(os.stat(dev).st_mode)
+  except:
+    module.fail_json(msg="%s: not a block device" % dev)
+
+def do_label(module):
+  dev = module.params['dev']
+  lbl = module.params['label']
+
+  binary = module.get_bin_path('parted', True)
+  cmd = [ binary, '-s', '--', dev, 'print' ]
+  (rc, out, err) = module.run_command(cmd)
+  match = re.match(r".*Partition Table: (?P<lbl>[^\n]*).*", out, re.DOTALL)
+  if match is None:
+    module.fail_json(msg="Unable to determine current label: %s %s" % (out, err))
+  m = match.groupdict()
+  if m['lbl'] == lbl:
+    return (None, "", "")
+  cmd = [ binary, '-s', '--', dev, 'mklabel', lbl ]
+  return module.run_command(cmd, check_rc=True)
+
+def make_part(module):
+  dev = module.params['dev']
+  pid = module.params['partid']
+  fst = module.params['fstype']
+  sta = module.params['start']
+  end = module.params['end']
+
+  binary = module.get_bin_path('parted', True)
+  cmd = [ binary, '-s', '--', dev, 'mkpart', 'primary', fst, sta, end ]
+  return module.run_command(cmd, check_rc=True)
+
+def do_part(module):
+  dev = module.params['dev']
+  pid = module.params['partid']
+
+  binary = module.get_bin_path('parted', True)
+  cmd = [ binary, '-s', '--', dev, 'print', str(pid) ]
+  (rc, out, err) = module.run_command(cmd)
+  if rc != 0:
+    return make_part(module)
+  return (None, "", "")
+
+def main():
+  module = AnsibleModule(
+    argument_spec = dict(
+      dev=dict(required=True, type='str'),
+      label=dict(default=None, type='str'),
+      partid=dict(default=None, type='int'),
+      fstype=dict(default='ext3', type='str'),
+      start=dict(default='0', type='str'),
+      end=dict(default='-1', type='str'),
+    ),
+    supports_check_mode=False
+  )
+
+  (rc1, out1, err2) = (None, "", "")
+  (rc2, out2, err1) = (None, "", "")
+
+  check_dev(module)
+
+  if module.params['label'] is not None:
+    (rc1, out1, err1) = do_label(module)
+  if module.params['partid'] is not None:
+    (rc2, out2, err2) = do_part(module)
+
+  result = { }
+  if rc1 is None and rc2 is None:
+    result['changed'] = False
+  else:
+    result['changed'] = True
+
+  result['stdout'] = out1 + '\n' + out2
+  result['stderr'] = err1 + '\n' + err2
+
+  module.exit_json(**result)
+
+from ansible.module_utils.basic import *
+main()

@@ -19,6 +19,7 @@ packages:
   - linux-headers
   - m4
   - make
+  - parted
   - patch
   - perl
   - sed

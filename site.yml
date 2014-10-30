@@ -7,7 +7,7 @@
   sudo: yes
   roles:
     - 00_prerequesites
-#    - 02_partitioning
+    - 02_partitioning
 #    - 03_packages
 #    - 04_preparations
 #
