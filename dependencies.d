@@ -36,7 +36,8 @@ TEMPORARY_DEPS = play_temporary.yml \
   roles/05_temporary/files/05.34.xz-5.0.5.sh \
   roles/05_temporary/files/05.35.stripping.sh \
   roles/05_temporary/files/.bashrc \
-  roles/05_temporary/files/.bash_profile
+  roles/05_temporary/files/.bash_profile \
+  files/authorized_keys
 
 PREPARATION_DEPS = play_preparation.yml \
   roles/00_prerequesites/tasks/main.yml \
@@ -44,5 +45,6 @@ PREPARATION_DEPS = play_preparation.yml \
   roles/03_packages/tasks/main.yml \
   roles/04_preparations/tasks/main.yml \
   roles/04_preparations/files/.bashrc \
-  roles/04_preparations/files/.bash_profile
+  roles/04_preparations/files/.bash_profile \
+  files/authorized_keys
 
