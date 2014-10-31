@@ -21,7 +21,7 @@
   copy: owner=lfs group=lfs src=files/authorized_keys dest=/home/lfs/.ssh/authorized_keys mode=0600
 
 - name: Install bash profile of the lfs user
-  copy: src={{ item }} dest=/home/lfs owner=lfs group=lfs
+  copy: src={{ item }} dest=/home/lfs/{{ item }} owner=lfs group=lfs
   with_items:
     - ".bash_profile"
     - ".bashrc"

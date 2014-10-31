@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf ncurses-5.9.tar.gz
+tar -xf ../sources/ncurses-5.9.tar.gz
 cd ncurses-5.9
 
 ./configure           \

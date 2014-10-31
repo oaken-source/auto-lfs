@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf tcl8.6.1-src.tar.gz
+tar -xf ../sources/tcl8.6.1-src.tar.gz
 cd tcl8.6.1
 
 cd unix

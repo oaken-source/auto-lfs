@@ -1,0 +1,12 @@
+---
+# This playbook prepares the image for the temporary LFS build
+
+- name: Prepare the virtual bootstrapping host
+  hosts: all
+  remote_user: admin
+  sudo: yes
+  roles:
+    - 00_prerequesites
+    - 02_partitioning
+    - 03_packages
+    - 04_preparations

@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf glibc-2.19.tar.xz
+tar -xf ../sources/glibc-2.19.tar.xz
 cd glibc-2.19
 
 if [ ! -r /usr/include/rpc/types.h ]; then

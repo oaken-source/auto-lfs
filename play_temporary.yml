@@ -1,0 +1,8 @@
+---
+# This playbook builds the temporary LFS system
+
+- name: Build the temporary LFS system
+  hosts: all
+  remote_user: lfs
+  roles:
+    - 05_temporary

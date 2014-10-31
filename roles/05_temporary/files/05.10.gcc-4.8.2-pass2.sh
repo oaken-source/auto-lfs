@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf gcc-4.8.2.tar.bz2
+tar -xf ../sources/gcc-4.8.2.tar.bz2
 cd gcc-4.8.2
 
 cat gcc/limitx.h gcc/glimits.h gcc/limity.h > \
@@ -33,11 +28,11 @@ do
   touch $file.orig
 done
 
-tar -xf ../mpfr-3.1.2.tar.xz
+tar -xf ../../sources/mpfr-3.1.2.tar.xz
 mv mpfr-3.1.2 mpfr
-tar -xf ../gmp-5.1.3.tar.xz
+tar -xf ../../sources/gmp-5.1.3.tar.xz
 mv gmp-5.1.3 gmp
-tar -xf ../mpc-1.0.2.tar.gz
+tar -xf ../../sources/mpc-1.0.2.tar.gz
 mv mpc-1.0.2 mpc
 
 mkdir ../gcc-build

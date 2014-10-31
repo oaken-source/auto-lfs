@@ -1,0 +1,9 @@
+---
+# This role finalizes the LFS build
+
+- name: Build the real LFS system
+  hosts: all
+  remote_user: root
+#  roles:
+#    - 06_basic_system
+#    - 07_system_bootscripts

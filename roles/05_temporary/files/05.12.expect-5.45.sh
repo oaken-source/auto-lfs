@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf expect5.45.tar.gz
+tar -xf ../sources/expect5.45.tar.gz
 cd expect5.45
 
 cp configure{,.orig}

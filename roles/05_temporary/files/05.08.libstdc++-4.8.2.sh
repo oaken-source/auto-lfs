@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf gcc-4.8.2.tar.bz2
+tar -xf ../sources/gcc-4.8.2.tar.bz2
 cd gcc-4.8.2
 
 mkdir -p ../gcc-build

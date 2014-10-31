@@ -1,15 +1,10 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cd $LFS/sources && $0 go &> $LFS/logs/$(basename $0).log
-  exit $?
-fi
-
 set -e
 set -u
 set -x
 
-tar -xf gettext-0.18.3.2.tar.gz
+tar -xf ../sources/gettext-0.18.3.2.tar.gz
 cd gettext-0.18.3.2
 
 cd gettext-tools
