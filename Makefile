@@ -47,9 +47,10 @@ $(PREPARATION): $(MACHINE) $(PREPARATION_DEPS)
 	vagrant snapshot take default preparation_done
 	touch $(PREPARATION)
 
-# rebuild the vm from the base box if bootstrap of Vagrantfile changed
+# rebuild the vm from the base box if bootstrap or Vagrantfile changed
 $(MACHINE): bootstrap.sh Vagrantfile
 	vagrant destroy -f
+	rm -f $(MACHINEDIR)/.*.stamp
 	vagrant up
 	vagrant snapshot take default bootstrap_done
 
