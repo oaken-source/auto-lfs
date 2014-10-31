@@ -25,11 +25,12 @@ include dependencies.d
 
 # run the finalization play
 $(FINALIZATION): $(TEMPORARY) $(FINALIZATION_DEPS)
-	vagrant snapshot go default temporary_done
+	# TODO: uncomment when finished
+	# vagrant snapshot go default temporary_done
 	while ! ssh -q admin@192.168.22.22 exit; do sleep 1; done
 	ansible-playbook -i inventory play_finalization.yml $(ANSIBLE_FLAGS)
-	vagrant snapshot take default finalization_done
-	touch $(FINALIZATION)
+	# vagrant snapshot take default finalization_done
+	# touch $(FINALIZATION)
 
 # run the temporary play
 $(TEMPORARY): $(PREPARATION) $(TEMPORARY_DEPS)

@@ -114,7 +114,7 @@
   sudo: yes
 
 - name: Install authorized keys for the root user
-  copy: group=root owner=root src=files/authorized_keys /root/.ssh/authorized_keys mode=0600
+  copy: group=root owner=root src=files/authorized_keys dest=/root/.ssh/authorized_keys mode=0600
   sudo: yes
 
 - name: Install bash profile for the root user
