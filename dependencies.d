@@ -1,5 +1,5 @@
 
-FINALIZATION_DEPS =
+FINALIZATION_DEPS = play_finalization.yml
 
 TEMPORARY_DEPS = play_temporary.yml \
   roles/05_temporary/tasks/main.yml \
