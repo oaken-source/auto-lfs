@@ -1,30 +1,16 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cp $0 $LFS/sources/
-  chroot "$LFS" /tools/bin/env -i                 \
-    HOME=/root                                    \
-    TERM="$TERM"                                  \
-    PS1='\u:\w\$ '                                \
-    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
-    /tools/bin/bash --login +h -c "cd /sources && bash $(basename $0) go" &> $LFS/logs/$(basename $0).log
-
-  res=$?
-  rm $LFS/sources/$(basename $0)
-  exit $res
-fi
-
 set +h
 set -e
 set -u
 set -x
 
-tar -xf glibc-2.19.tar.xz 
+tar -xf ../sources/glibc-2.19.tar.xz
 cd glibc-2.19
 
 sed -i 's/\\$$(pwd)/`pwd`/' timezone/Makefile
 
-patch -Np1 -i ../glibc-2.19-fhs-1.patch
+patch -Np1 -i ../../sources/glibc-2.19-fhs-1.patch
 
 mkdir -v ../glibc-build
 cd ../glibc-build
@@ -88,7 +74,7 @@ rpc: files
 # End /etc/nsswitch.conf
 EOF
 
-tar -xf ../tzdata2013i.tar.gz
+tar -xf ../../sources/tzdata2013i.tar.gz
 
 ZONEINFO=/usr/share/zoneinfo
 mkdir -pv $ZONEINFO/{posix,right}

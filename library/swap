@@ -26,7 +26,7 @@ def swap_on(module):
   match = re.match(r".*%s[ ][ ]*none[ ][ ]*swap.*" % dev, fstab, re.DOTALL)
   if match is None:
     with open("/etc/fstab", "a") as f:
-      f.write("%s none swap sw 0 0" % dev)
+      f.write("%s none swap sw 0 0\n" % dev)
 
   return (max(rc1, rc2), "%s\n%s" % (out1, out2), "%s\n%s" % (err1, err2))
 

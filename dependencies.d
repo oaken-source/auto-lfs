@@ -1,5 +1,69 @@
 
-FINALIZATION_DEPS = play_finalization.yml
+FINALIZATION_DEPS = play_finalization.yml \
+  roles/06_basic_system/files/06.02.shm_symlink.sh \
+  roles/06_basic_system/files/06.05.creating_directories.sh \
+  roles/06_basic_system/files/06.06.creating_files.sh \
+  roles/06_basic_system/files/06.07.linux-3.13.3-api-headers.sh \
+  roles/06_basic_system/files/06.08.man-pages-3.59.sh \
+  roles/06_basic_system/files/06.09.glibc-2.19.sh \
+  roles/06_basic_system/files/06.10.toolchain.sh \
+  roles/06_basic_system/files/06.11.zlib-1.2.8.sh \
+  roles/06_basic_system/files/06.12.file-5.17.sh \
+  roles/06_basic_system/files/06.13.binutils-2.24.sh \
+  roles/06_basic_system/files/06.14.gmp-5.1.3.sh \
+  roles/06_basic_system/files/06.15.mpfr-3.1.2.sh \
+  roles/06_basic_system/files/06.16.mpc-1.0.2.sh \
+  roles/06_basic_system/files/06.17.gcc-4.8.2.sh \
+  roles/06_basic_system/files/06.18.sed-4.2.2.sh \
+  roles/06_basic_system/files/06.19.bzip2-1.0.6.sh \
+  roles/06_basic_system/files/06.20.pkg-config-0.28.sh \
+  roles/06_basic_system/files/06.21.ncurses-5.9.sh \
+  roles/06_basic_system/files/06.22.shadow-4.1.5.1.sh \
+  roles/06_basic_system/files/06.23.psmisc-22.20.sh \
+  roles/06_basic_system/files/06.24.procps-ng-3.3.9.sh \
+  roles/06_basic_system/files/06.25.e2fsprogs-1.42.9.sh \
+  roles/06_basic_system/files/06.26.coreutils-8.22.sh \
+  roles/06_basic_system/files/06.27.iana-etc-2.30.sh \
+  roles/06_basic_system/files/06.28.m4-1.4.17.sh \
+  roles/06_basic_system/files/06.29.flex-2.5.38.sh \
+  roles/06_basic_system/files/06.30.bison-3.0.2.sh \
+  roles/06_basic_system/files/06.31.grep-2.16.sh \
+  roles/06_basic_system/files/06.32.readline-6.2.sh \
+  roles/06_basic_system/files/06.33.bash-4.2.sh \
+  roles/06_basic_system/files/06.34.bc-1.06.95.sh \
+  roles/06_basic_system/files/06.35.libtool-2.4.2.sh \
+  roles/06_basic_system/files/06.36.gdbm-1.11.sh \
+  roles/06_basic_system/files/06.37.inetutils-1.9.2.sh \
+  roles/06_basic_system/files/06.38.perl-5.18.2.sh \
+  roles/06_basic_system/files/06.39.autoconf-2.69.sh \
+  roles/06_basic_system/files/06.40.automake-1.14.1.sh \
+  roles/06_basic_system/files/06.41.diffutils-3.3.sh \
+  roles/06_basic_system/files/06.42.gawk-4.1.0.sh \
+  roles/06_basic_system/files/06.43.findutils-4.4.2.sh \
+  roles/06_basic_system/files/06.44.gettext-0.18.3.2.sh \
+  roles/06_basic_system/files/06.45.groff-1.22.2.sh \
+  roles/06_basic_system/files/06.46.xz-5.0.5.sh \
+  roles/06_basic_system/files/06.47.grub-2.00.sh \
+  roles/06_basic_system/files/06.48.less-458.sh \
+  roles/06_basic_system/files/06.49.gzip-1.6.sh \
+  roles/06_basic_system/files/06.50.iproute2-3.12.0.sh \
+  roles/06_basic_system/files/06.51.kbd-2.0.1.sh \
+  roles/06_basic_system/files/06.52.kmod-16.sh \
+  roles/06_basic_system/files/06.53.libpipeline-1.2.6.sh \
+  roles/06_basic_system/files/06.54.make-4.0.sh \
+  roles/06_basic_system/files/06.55.patch-2.7.1.sh \
+  roles/06_basic_system/files/06.56.sysklogd-1.5.sh \
+  roles/06_basic_system/files/06.57.sysvinit-2.88dsf.sh \
+  roles/06_basic_system/files/06.58.tar-1.27.1.sh \
+  roles/06_basic_system/files/06.59.texinfo-5.2.sh \
+  roles/06_basic_system/files/06.60.udev-208.sh \
+  roles/06_basic_system/files/06.61.util-linux-2.24.1.sh \
+  roles/06_basic_system/files/06.62.man-db-2.6.6.sh \
+  roles/06_basic_system/files/06.63.vim-7.4.sh \
+  roles/06_basic_system/files/06.65.stripping.sh \
+  roles/06_basic_system/files/06.66.cleanup.sh \
+  roles/06_basic_system/files/group \
+  roles/06_basic_system/files/passwd
 
 TEMPORARY_DEPS = play_temporary.yml \
   roles/05_temporary/tasks/main.yml \

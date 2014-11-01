@@ -1,19 +1,5 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cp $0 $LFS/sources/
-  chroot "$LFS" /tools/bin/env -i                 \
-    HOME=/root                                    \
-    TERM="$TERM"                                  \
-    PS1='\u:\w\$ '                                \
-    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
-    /tools/bin/bash --login +h -c "cd /sources && bash $(basename $0) go" &> $LFS/logs/$(basename $0).log
-
-  res=$?
-  rm $LFS/sources/$(basename $0)
-  exit $res
-fi
-
 set +h
 set -e
 set -u
@@ -30,9 +16,9 @@ mkdir -p /usr/libexec
 mkdir -p /usr/{,local/}share/man/man{1..8}
 
 case $(uname -m) in
-  x86_64) ln -s lib /lib64      && 
+  x86_64) ln -s lib /lib64      &&
           ln -s lib /usr/lib64  &&
-          ln -s lib /usr/local/lib64 
+          ln -s lib /usr/local/lib64
       ;;
 esac
 

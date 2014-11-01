@@ -1,28 +1,14 @@
 #!/bin/bash
 
-if [ -z "$1" ]; then
-  cp $0 $LFS/sources/
-  chroot "$LFS" /tools/bin/env -i                 \
-    HOME=/root                                    \
-    TERM="$TERM"                                  \
-    PS1='\u:\w\$ '                                \
-    PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin \
-    /tools/bin/bash --login +h -c "cd /sources && bash $(basename $0) go" &> $LFS/logs/$(basename $0).log
-
-  res=$?
-  rm $LFS/sources/$(basename $0)
-  exit $res
-fi
-
 set +h
 set -e
 set -u
 set -x
 
-tar -xf bash-4.2.tar.gz
+tar -xf ../sources/bash-4.2.tar.gz
 cd bash-4.2
 
-patch -Np1 -i ../bash-4.2-fixes-12.patch
+patch -Np1 -i ../../sources/bash-4.2-fixes-12.patch
 
 ./configure                         \
   --prefix=/usr                     \
