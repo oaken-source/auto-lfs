@@ -23,7 +23,7 @@ def run_script(module):
 
   logfile = "/logs/%s.log" % fle
   with open(logfile, "w") as f:
-    rc = subprocess.Popen([ '/tools/bin/env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin', shl, '--login', '+h', '-c', "cd /build && bash %s" % fle ], stdout=f, stderr=subprocess.STDOUT).wait()
+    rc = subprocess.Popen([ '/tools/bin/env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin', shl, '--login', '+h', '-c', "cd /build && %s %s" % (shl, fle) ], stdout=f, stderr=subprocess.STDOUT).wait()
 
   os.remove("/build/%s" % fle)
   os.fchdir(real_root)

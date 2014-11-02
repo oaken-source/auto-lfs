@@ -19,6 +19,11 @@ cd procps-ng-3.3.9
 make
 
 sed -i -r 's|(pmap_initname)\\\$|\1|' testsuite/pmap.test/pmap.exp
+
+# this fixes a race condition in the vmstat test that is already fixed upstream
+cp testsuite/vmstat.test/vmstat.exp{,.orig}
+sed -r 's:\\\[a-z\\\]\+\\\\d\+:\\[shv\\]d\\[a-z\\]\\\\d\\\\d+:' testsuite/vmstat.test/vmstat.exp.orig > testsuite/vmstat.test/vmstat.exp
+
 make check
 
 make install

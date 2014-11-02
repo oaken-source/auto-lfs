@@ -30,7 +30,7 @@
 - name: Bind tmpfs to /mnt/lfs/run
   mount: name=/mnt/lfs/run src=tmpfs fstype=tmpfs state=mounted
 
-# I found it hard to represent the following in a cleaner way. (see ch06script)
+# I found it hard to represent the following in a cleaner way. (see script)
 - name: Test for $LFS/dev/shm symlink
   script: 06.02.shm_symlink.sh
   register: dev_shm_symlink
@@ -180,7 +180,7 @@
 - name: 06.50. IPRoute2-3.12.0
   ch06script: file=06.50.iproute2-3.12.0.sh
 
-- name: 06.51Kbd-2.0.1
+- name: 06.51. Kbd-2.0.1
   ch06script: file=06.51.kbd-2.0.1.sh
 
 - name: 06.52. Kmod-16
@@ -224,3 +224,6 @@
 
 - name: 06.66. Cleaning Up
   ch06script: file=06.66.cleanup.sh
+
+- name: Remove /tools symlink
+  file: path=/tools state=absent
