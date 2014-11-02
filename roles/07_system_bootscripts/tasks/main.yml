@@ -2,7 +2,23 @@
 # this script installs the system bootscripts as described by lfs chapter 7
 
 - name: Install system configuration scripts
-  copy: src={{ item.file }} path={{ item.path }}/{{ item.file }}
+  copy: src={{ item.file }} dest={{ item.path }}
   with_items:
-    - { file: 'ifconfig.eth0', path: '/etc/sysconfig/' }
+    - { file: 'ifconfig.eth0', path: '{{ LFS }}/etc/sysconfig/' }
+    - { file: 'ifconfig.eth1', path: '{{ LFS }}/etc/sysconfig/' }
+    - { file: '/etc/resolv.conf', path: '{{ LFS }}/etc/' }
+    - { file: 'hosts', path: '{{ LFS }}/etc/' }
+
+# FIXME: the dedicated module used below seems overkill
+- name: 07.06. LFS-bootscripts-20130821
+  ch07script: file=07.06.lfs-bootscripts-20130821.sh
+
+- name: Install system configuration scripts (part 2)
+  copy: src={{ item.file }} dest={{ item.path }}
+  with_items:
+    - { file: 'inittab', path: '{{ LFS }}/etc/' }
+    - { file: 'network', path: '{{ LFS }}/etc/sysconfig/' }
+    - { file: 'clock', path: '{{ LFS }}/etc/sysconfig' }
+    - { file: 'profile', path: '{{ LFS }}/etc/' }
+    - { file: 'inputrc', path: '{{ LFS }}/etc/' }
 

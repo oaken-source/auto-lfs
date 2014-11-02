@@ -1,5 +1,6 @@
 
 FINALIZATION_DEPS = play_finalization.yml \
+  roles/06_basic_system/tasks/main.yml \
   roles/06_basic_system/files/06.02.shm_symlink.sh \
   roles/06_basic_system/files/06.05.creating_directories.sh \
   roles/06_basic_system/files/06.06.creating_files.sh \
@@ -63,7 +64,23 @@ FINALIZATION_DEPS = play_finalization.yml \
   roles/06_basic_system/files/06.65.stripping.sh \
   roles/06_basic_system/files/06.66.cleanup.sh \
   roles/06_basic_system/files/group \
-  roles/06_basic_system/files/passwd
+  roles/06_basic_system/files/passwd \
+  roles/07_system_bootscripts/tasks/main.yml \
+  roles/07_system_bootscripts/files/07.06.lfs-bootscripts-20130821.sh \
+  roles/07_system_bootscripts/files/clock \
+  roles/07_system_bootscripts/files/console \
+  roles/07_system_bootscripts/files/hosts \
+  roles/07_system_bootscripts/files/ifconfig.eth0 \
+  roles/07_system_bootscripts/files/ifconfig.eth1 \
+  roles/07_system_bootscripts/files/inittab \
+  roles/07_system_bootscripts/files/inputrc \
+  roles/07_system_bootscripts/files/network \
+  roles/07_system_bootscripts/files/profile \
+  roles/08_make_bootable/tasks/main.yml \
+  roles/08_make_bootable/files/08.03.linux-3.13.3.sh \
+  roles/08_make_bootable/files/08.04.grub.sh \
+  roles/08_make_bootable/files/final.sh \
+  roles/08_make_bootable/files/fstab
 
 TEMPORARY_DEPS = play_temporary.yml \
   roles/05_temporary/tasks/main.yml \

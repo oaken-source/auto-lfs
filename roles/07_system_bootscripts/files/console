@@ -1,0 +1,6 @@
+# Begin /etc/sysconfig/console
+
+KEYMAP="de"
+UNICODE="1"
+
+# End /etc/sysconfig/console

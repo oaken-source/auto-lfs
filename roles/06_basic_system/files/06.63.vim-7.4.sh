@@ -39,4 +39,4 @@ endif
 EOF
 
 cd ..
-rm -rf vim-7.4
+rm -rf vim74

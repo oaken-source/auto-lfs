@@ -1,0 +1,60 @@
+#!/usr/bin/python
+
+import os
+import shutil
+import subprocess
+
+def run_script(module):
+  fle = module.params['file']
+
+  statefile = "/mnt/lfs/state/.%s.done" % fle
+  if os.path.isfile(statefile):
+    return (None, "", "")
+
+  script = "/vagrant/roles/08_make_bootable/files/%s" % fle
+  if not os.path.isfile(script):
+    module.fail_json(msg="%s: file not found" % script)
+
+  shutil.copy(script, "/mnt/lfs/build/")
+
+  real_root = os.open('/', os.O_RDONLY)
+  os.chroot("/mnt/lfs")
+
+  logfile = "/logs/%s.log" % fle
+  with open(logfile, "w") as f:
+    rc = subprocess.Popen([ 'env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin', 'bash', '--login', '+h', '-c', "cd /build && bash %s" % fle ], stdout=f, stderr=subprocess.STDOUT).wait()
+
+  os.remove("/build/%s" % fle)
+  os.fchdir(real_root)
+  os.chroot('.')
+
+  if rc != 0:
+    module.fail_json(msg="build error. see %s for details" % logfile)
+
+  with open(statefile, "w") as f:
+    pass
+  return (rc, "", "")
+
+def main():
+  module = AnsibleModule(
+    argument_spec = dict(
+      file=dict(required=True, type='str'),
+    ),
+    supports_check_mode=False
+  )
+
+  (rc, out, err) = run_script(module)
+
+  result = { }
+  if rc is None:
+    result['changed'] = False
+  else:
+    result['changed'] = True
+
+  result['stdout'] = out
+  result['stderr'] = err
+
+  module.exit_json(**result)
+
+from ansible.module_utils.basic import *
+main()

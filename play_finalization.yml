@@ -6,4 +6,5 @@
   remote_user: root
   roles:
     - 06_basic_system
-#    - 07_system_bootscripts
+    - 07_system_bootscripts
+    - 08_make_bootable
