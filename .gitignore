@@ -3,3 +3,5 @@ LFS-BOOK*
 
 .vagrant
 lfs_disk.vdi
+
+*.pyc
