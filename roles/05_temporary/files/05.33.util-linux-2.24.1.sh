@@ -13,7 +13,7 @@ cd util-linux-2.24.1
   --without-systemdsystemunitdir  \
   PKG_CONFIG=""
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

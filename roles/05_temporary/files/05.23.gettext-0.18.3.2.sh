@@ -10,10 +10,10 @@ cd gettext-0.18.3.2
 cd gettext-tools
 EMACS="no" ./configure --prefix=/tools --disable-shared
 
-make -C gnulib-lib
-make -C src msgfmt
-make -C src msgmerge
-make -C src xgettext
+make -C gnulib-lib ${LFS_MFLAGS:-}
+make -C src msgfmt ${LFS_MFLAGS:-}
+make -C src msgmerge ${LFS_MFLAGS:-}
+make -C src xgettext ${LFS_MFLAGS:-}
 
 cp src/{msgfmt,msgmerge,xgettext} /tools/bin
 

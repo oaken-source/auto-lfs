@@ -17,7 +17,7 @@ cd kmod-16
   --with-xz               \
   --with-zlib
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

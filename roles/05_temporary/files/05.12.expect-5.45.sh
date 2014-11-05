@@ -15,7 +15,7 @@ sed 's:/usr/local/bin:/bin:' configure.orig > configure
   --with-tcl=/tools/lib \
   --with-tclinclude=/tools/include
 
-make
+make ${LFS_MFLAGS:-}
 
 # send_tty clutters the output and breaks ansible integration
 cp tests/logfile.test{,.orig}

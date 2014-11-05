@@ -17,7 +17,7 @@ cd man-db-2.6.6
   --with-vgrind=/usr/bin/vgrind         \
   --with-grap=/usr/bin/grap
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

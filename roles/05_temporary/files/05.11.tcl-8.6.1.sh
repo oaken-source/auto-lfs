@@ -10,7 +10,7 @@ cd tcl8.6.1
 cd unix
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 TZ=UTC make test
 

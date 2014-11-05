@@ -23,7 +23,7 @@ sh Configure                    \
   -Dpager="/usr/bin/less -isR"  \
   -Duseshrplib
 
-make
+make ${LFS_MFLAGS:-}
 
 make -k test
 

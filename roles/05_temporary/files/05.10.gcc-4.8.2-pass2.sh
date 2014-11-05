@@ -58,7 +58,7 @@ RANLIB=$LFS_TGT-ranlib                              \
   --with-mpfr-include=$(pwd)/../gcc-4.8.2/mpfr/src  \
   --with-mpfr-lib=$(pwd)/mpfr/src/.libs
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

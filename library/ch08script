@@ -21,8 +21,12 @@ def run_script(module):
   os.chroot("/mnt/lfs")
 
   logfile = "/logs/%s.log" % fle
+  cmd = [ '/tools/bin/env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin' ]
+  if module.params['lfs_mflags'] is not None:
+    cmd += module.parmas['lfs_mflags']
+  cmd += [ 'bach', '--login', '+h', '-c', "cd /build && %s %s" % fle ]
   with open(logfile, "w") as f:
-    rc = subprocess.Popen([ 'env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin', 'bash', '--login', '+h', '-c', "cd /build && bash %s" % fle ], stdout=f, stderr=subprocess.STDOUT).wait()
+    rc = subprocess.Popen(cmd, stdout=f, stderr=subprocess.STDOUT).wait()
 
   os.remove("/build/%s" % fle)
   os.fchdir(real_root)
@@ -39,6 +43,7 @@ def main():
   module = AnsibleModule(
     argument_spec = dict(
       file=dict(required=True, type='str'),
+      lfs_mflags=dict(default=None, type='str'),
     ),
     supports_check_mode=False
   )

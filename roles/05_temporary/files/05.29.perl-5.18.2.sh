@@ -11,7 +11,7 @@ patch -Np1 -i ../../sources/perl-5.18.2-libc-1.patch
 
 sh Configure -des -Dprefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 cp perl cpan/podlators/pod2man /tools/bin
 mkdir -p /tools/lib/perl5/5.18.2

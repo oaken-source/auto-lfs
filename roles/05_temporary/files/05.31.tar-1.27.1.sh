@@ -9,7 +9,7 @@ cd tar-1.27.1
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

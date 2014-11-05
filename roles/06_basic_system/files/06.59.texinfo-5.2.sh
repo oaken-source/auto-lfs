@@ -10,7 +10,7 @@ cd texinfo-5.2
 
 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

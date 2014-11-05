@@ -5,10 +5,10 @@
   copy: src=fstab dest=/etc/
 
 - name: 08.03. Linux-3.13.3
-  ch08script: file=08.03.linux-3.13.3.sh
+  ch08script: lfs_mflags={{ LFS_MFLAGS }} file=08.03.linux-3.13.3.sh
 
 - name: 08.04. Using GRUB
-  ch08script: file=08.04.grub.sh
+  ch08script: lfs_mflags={{ LFS_MFLAGS }} file=08.04.grub.sh
 
 - name: Final cleanup
-  ch08script: file=final.sh
+  ch08script: lfs_mflags={{ LFS_MFLAGS }} file=final.sh

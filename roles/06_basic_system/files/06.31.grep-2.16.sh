@@ -10,7 +10,7 @@ cd grep-2.16
 
 ./configure --prefix=/usr --bindir=/bin
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

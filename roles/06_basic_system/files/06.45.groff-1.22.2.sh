@@ -10,7 +10,7 @@ cd groff-1.22.2
 
 PAGE=A4 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

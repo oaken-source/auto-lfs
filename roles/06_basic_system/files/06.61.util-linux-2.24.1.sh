@@ -15,7 +15,7 @@ mkdir -pv /var/lib/hwclock
 
 ./configure
 
-make
+make ${LFS_MFLAGS:-}
 
 chown -Rv nobody .
 set +e

@@ -9,7 +9,7 @@ cd check-0.9.12
 
 PKG_CONFIG= ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

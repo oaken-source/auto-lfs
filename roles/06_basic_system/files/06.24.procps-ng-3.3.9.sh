@@ -16,7 +16,7 @@ cd procps-ng-3.3.9
   --disable-static                        \
   --disable-kill
 
-make
+make ${LFS_MFLAGS:-}
 
 sed -i -r 's|(pmap_initname)\\\$|\1|' testsuite/pmap.test/pmap.exp
 

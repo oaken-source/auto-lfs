@@ -14,7 +14,7 @@ ln -svf /tools/include/blkid /usr/include
 ln -svf /tools/include/uuid /usr/include
 export LD_LIBRARY_PATH=/tools/lib
 
-make -f udev-lfs-208-3/Makefile.lfs
+make -f udev-lfs-208-3/Makefile.lfs ${LFS_MFLAGS:-}
 
 make -f udev-lfs-208-3/Makefile.lfs install
 

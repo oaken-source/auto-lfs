@@ -10,7 +10,7 @@ cd gdbm-1.11
 
 ./configure --prefix=/usr --enable-libgdbm-compat
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

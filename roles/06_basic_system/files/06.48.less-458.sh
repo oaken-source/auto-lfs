@@ -10,7 +10,7 @@ cd less-458
 
 ./configure --prefix=/usr --sysconfdir=/etc
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

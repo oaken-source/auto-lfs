@@ -14,7 +14,7 @@ cd bc-1.06.95
   --mandir=/usr/share/man \
   --infodir=/usr/share/info
 
-make
+make ${LFS_MFLAGS:-}
 
 echo "quit" | ./bc/bc -l Test/checklib.b
 

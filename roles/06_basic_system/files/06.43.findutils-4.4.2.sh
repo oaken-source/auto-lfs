@@ -10,7 +10,7 @@ cd findutils-4.4.2
 
 ./configure --prefix=/usr --localstatedir=/var/lib/locate
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

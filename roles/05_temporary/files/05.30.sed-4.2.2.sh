@@ -9,7 +9,7 @@ cd sed-4.2.2
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

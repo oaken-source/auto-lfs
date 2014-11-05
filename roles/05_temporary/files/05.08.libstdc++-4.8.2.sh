@@ -20,7 +20,7 @@ cd ../gcc-build
   --disable-libstdcxx-pch           \
 --with-gxx-include-dir=/tools/$LFS_TGT/include/c++/4.8.2
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

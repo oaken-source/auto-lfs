@@ -10,7 +10,7 @@ cd libpipeline-1.2.6
 
 PKG_CONFIG_PATH=/tools/lib/pkgconfig ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

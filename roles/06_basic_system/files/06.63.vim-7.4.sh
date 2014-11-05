@@ -12,7 +12,7 @@ echo '#define SYS_VIMRC_FILE "/etc/vimrc"' >> src/feature.h
 
 ./configure --prefix=/usr --enable-multibyte
 
-make
+make ${LFS_MFLAGS:-}
 
 make test
 

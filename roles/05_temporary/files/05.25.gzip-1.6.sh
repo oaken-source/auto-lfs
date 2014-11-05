@@ -9,7 +9,7 @@ cd gzip-1.6
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

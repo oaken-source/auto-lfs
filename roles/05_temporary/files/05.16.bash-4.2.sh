@@ -11,7 +11,7 @@ patch -Np1 -i ../../sources/bash-4.2-fixes-12.patch
 
 ./configure --prefix=/tools --without-bash-malloc
 
-make
+make ${LFS_MFLAGS:-}
 
 make tests
 

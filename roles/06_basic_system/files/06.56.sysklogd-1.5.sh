@@ -8,7 +8,7 @@ set -x
 tar -xf ../sources/sysklogd-1.5.tar.gz
 cd sysklogd-1.5
 
-make
+make ${LFS_MFLAGS:-}
 
 make BINDIR=/sbin install
 

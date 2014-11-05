@@ -19,7 +19,7 @@ cd ../binutils-build
   --disable-nls              \
   --disable-werror
 
-make
+make ${LFS_MFLAGS:-}
 
 case $(uname -m) in
   x86_64) mkdir -v /tools/lib && ln -sv lib /tools/lib64 ;;

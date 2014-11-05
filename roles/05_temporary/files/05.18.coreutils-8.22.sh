@@ -9,7 +9,7 @@ cd coreutils-8.22
 
 ./configure --prefix=/tools --enable-install-program=hostname
 
-make
+make ${LFS_MFLAGS:-}
 
 make RUN_EXPENSIVE_TESTS=yes check
 

@@ -18,7 +18,7 @@ sed -i -e '/gets is a/d' grub-core/gnulib/stdio.in.h
   --disable-efiemu        \
   --disable-werror
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

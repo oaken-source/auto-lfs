@@ -18,7 +18,7 @@ echo '#define PATH_PROCNET_DEV "/proc/net/dev"' >> ifconfig/system/linux.h
   --disable-whois       \
   --disable-servers
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

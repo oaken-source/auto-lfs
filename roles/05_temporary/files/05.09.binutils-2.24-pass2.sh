@@ -19,7 +19,7 @@ RANLIB=$LFS_TGT-ranlib        \
   --with-lib-path=/tools/lib  \
   --with-sysroot
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

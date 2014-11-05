@@ -37,7 +37,7 @@
   changed_when: dev_shm_symlink.stdout.find("changed") == 1
 
 - name: 06.05. Creating Directories
-  ch06script: file=06.05.creating_directories.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.05.creating_directories.sh
 
 - name: Install /etc/passwd and /etc/group
   copy: src={{ item }} dest={{ LFS }}/etc/{{ item }} owner=root group=root
@@ -46,184 +46,184 @@
     - group
 
 - name: 06.06. Creating Essential Files and Symlinks
-  ch06script: file=06.06.creating_files.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.06.creating_files.sh
 
 - name: 06.07. Linux-3.13.3 API Headers
-  ch06script: file=06.07.linux-3.13.3-api-headers.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.07.linux-3.13.3-api-headers.sh
 
 - name: 06.08. Man-pages-3.59
-  ch06script: file=06.08.man-pages-3.59.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.08.man-pages-3.59.sh
 
 - name: 06.09. Glibc-2.19
-  ch06script: file=06.09.glibc-2.19.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.09.glibc-2.19.sh
 
 - name: 06.10. Adjusting the Toolcain
-  ch06script: file=06.10.toolchain.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.10.toolchain.sh
 
 - name: 06.11. Zlib-1.2.8
-  ch06script: file=06.11.zlib-1.2.8.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.11.zlib-1.2.8.sh
 
 - name: 06.12. File-5.17
-  ch06script: file=06.12.file-5.17.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.12.file-5.17.sh
 
 - name: 06.13. Binutils-2.24
-  ch06script: file=06.13.binutils-2.24.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.13.binutils-2.24.sh
 
 - name: 06.14. GMP-5.1.3
-  ch06script: file=06.14.gmp-5.1.3.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.14.gmp-5.1.3.sh
 
 - name: 06.15. MPFR-3.1.2
-  ch06script: file=06.15.mpfr-3.1.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.15.mpfr-3.1.2.sh
 
 - name: 06.16. MPC-1.0.2
-  ch06script: file=06.16.mpc-1.0.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.16.mpc-1.0.2.sh
 
 - name: 06.17. GCC-4.8.2
-  ch06script: file=06.17.gcc-4.8.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.17.gcc-4.8.2.sh
 
 - name: 06.18. Sed-4.2.2
-  ch06script: file=06.18.sed-4.2.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.18.sed-4.2.2.sh
 
 - name: 06.19. Bzip2-1.0.6
-  ch06script: file=06.19.bzip2-1.0.6.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.19.bzip2-1.0.6.sh
 
 - name: 06.20. Pkg-config-0.28
-  ch06script: file=06.20.pkg-config-0.28.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.20.pkg-config-0.28.sh
 
 - name: 06.21. Ncurses-5.9
-  ch06script: file=06.21.ncurses-5.9.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.21.ncurses-5.9.sh
 
 - name: 06.22. Shadow-4.1.5.1
-  ch06script: file=06.22.shadow-4.1.5.1.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.22.shadow-4.1.5.1.sh
 
 - name: 06.23. Psmisc-22.20
-  ch06script: file=06.23.psmisc-22.20.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.23.psmisc-22.20.sh
 
 - name: 06.24. Procps-ng-3.3.9
-  ch06script: file=06.24.procps-ng-3.3.9.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.24.procps-ng-3.3.9.sh
 
 - name: 06.25. E2fsprogs-1.42.9
-  ch06script: file=06.25.e2fsprogs-1.42.9.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.25.e2fsprogs-1.42.9.sh
 
 - name: 06.26. Coreutils-8.22
-  ch06script: file=06.26.coreutils-8.22.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.26.coreutils-8.22.sh
 
 - name: 06.27. Iana-Etc-2.30
-  ch06script: file=06.27.iana-etc-2.30.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.27.iana-etc-2.30.sh
 
 - name: 06.28. M4-1.4.17
-  ch06script: file=06.28.m4-1.4.17.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.28.m4-1.4.17.sh
 
 - name: 06.29. Flex-2.5.38
-  ch06script: file=06.29.flex-2.5.38.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.29.flex-2.5.38.sh
 
 - name: 06.30. Bison-3.0.2
-  ch06script: file=06.30.bison-3.0.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.30.bison-3.0.2.sh
 
 - name: 06.31. Grep-2.16
-  ch06script: file=06.31.grep-2.16.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.31.grep-2.16.sh
 
 - name: 06.32. Readline-6.2
-  ch06script: file=06.32.readline-6.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.32.readline-6.2.sh
 
 - name: 06.33. Bash-4.2
-  ch06script: file=06.33.bash-4.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.33.bash-4.2.sh
 
 - name: 06.34. Bc-1.06.95
-  ch06script: file=06.34.bc-1.06.95.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.34.bc-1.06.95.sh
 
 - name: 06.35. Libtool-2.4.2
-  ch06script: file=06.35.libtool-2.4.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.35.libtool-2.4.2.sh
 
 - name: 06.36. GDBM-1.11
-  ch06script: file=06.36.gdbm-1.11.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.36.gdbm-1.11.sh
 
 - name: 06.37. Inetutils-1.9.2
-  ch06script: file=06.37.inetutils-1.9.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.37.inetutils-1.9.2.sh
 
 - name: 06.38. Perl-5.18.2
-  ch06script: file=06.38.perl-5.18.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.38.perl-5.18.2.sh
 
 - name: 06.39. Autoconf-2.69
-  ch06script: file=06.39.autoconf-2.69.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.39.autoconf-2.69.sh
 
 - name: 06.40. Automake-1.14.1
-  ch06script: file=06.40.automake-1.14.1.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.40.automake-1.14.1.sh
 
 - name: 06.41. Diffutils-3.3
-  ch06script: file=06.41.diffutils-3.3.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.41.diffutils-3.3.sh
 
 - name: 06.42. Gawk-4.1.0
-  ch06script: file=06.42.gawk-4.1.0.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.42.gawk-4.1.0.sh
 
 - name: 06.43. Findutils-4.4.2
-  ch06script: file=06.43.findutils-4.4.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.43.findutils-4.4.2.sh
 
 - name: 06.44. Gettext-0.18.3.2
-  ch06script: file=06.44.gettext-0.18.3.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.44.gettext-0.18.3.2.sh
 
 - name: 06.45. Groff-1.22.2
-  ch06script: file=06.45.groff-1.22.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.45.groff-1.22.2.sh
 
 - name: 06.46. Xz-5.0.5
-  ch06script: file=06.46.xz-5.0.5.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.46.xz-5.0.5.sh
 
 - name: 06.47. GRUB-2.00
-  ch06script: file=06.47.grub-2.00.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.47.grub-2.00.sh
 
 - name: 06.48. Less-458
-  ch06script: file=06.48.less-458.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.48.less-458.sh
 
 - name: 06.49. Gzip-1.6
-  ch06script: file=06.49.gzip-1.6.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.49.gzip-1.6.sh
 
 - name: 06.50. IPRoute2-3.12.0
-  ch06script: file=06.50.iproute2-3.12.0.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.50.iproute2-3.12.0.sh
 
 - name: 06.51. Kbd-2.0.1
-  ch06script: file=06.51.kbd-2.0.1.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.51.kbd-2.0.1.sh
 
 - name: 06.52. Kmod-16
-  ch06script: file=06.52.kmod-16.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.52.kmod-16.sh
 
 - name: 06.53. Libpipeline-1.2.6
-  ch06script: file=06.53.libpipeline-1.2.6.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.53.libpipeline-1.2.6.sh
 
 - name: 06.54. Make-4.0
-  ch06script: file=06.54.make-4.0.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.54.make-4.0.sh
 
 - name: 06.55. Patch-2.7.1
-  ch06script: file=06.55.patch-2.7.1.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.55.patch-2.7.1.sh
 
 - name: 06.56. Sysklogd-1.5
-  ch06script: file=06.56.sysklogd-1.5.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.56.sysklogd-1.5.sh
 
 - name: 06.57. Sysvinit-2.88dsf
-  ch06script: file=06.57.sysvinit-2.88dsf.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.57.sysvinit-2.88dsf.sh
 
 - name: 06.58. Tar-1.27.1
-  ch06script: file=06.58.tar-1.27.1.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.58.tar-1.27.1.sh
 
 - name: 06.59. Texinfo-5.2
-  ch06script: file=06.59.texinfo-5.2.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.59.texinfo-5.2.sh
 
 - name: 06.60. Udev-208
-  ch06script: file=06.60.udev-208.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.60.udev-208.sh
 
 - name: 06.61. Util-linux-2.24.1
-  ch06script: file=06.61.util-linux-2.24.1.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.61.util-linux-2.24.1.sh
 
 - name: 06.62. Man-DB-2.6.6
-  ch06script: file=06.62.man-db-2.6.6.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.62.man-db-2.6.6.sh
 
 - name: 06.63. Vim-7.4
-  ch06script: file=06.63.vim-7.4.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.63.vim-7.4.sh
 
 - name: 06.65. Stripping
-  ch06script: file=06.65.stripping.sh shell=/tools/bin/bash
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.65.stripping.sh shell=/tools/bin/bash
 
 - name: 06.66. Cleaning Up
-  ch06script: file=06.66.cleanup.sh
+  ch06script: lfs_mflags={{ LFS_MFLAGS }} file=06.66.cleanup.sh
 
 - name: Remove /tools symlink
   file: path=/tools state=absent

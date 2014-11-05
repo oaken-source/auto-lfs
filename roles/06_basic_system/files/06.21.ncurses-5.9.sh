@@ -16,7 +16,7 @@ cd ncurses-5.9
   --enable-pc-files       \
   --enable-widec
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

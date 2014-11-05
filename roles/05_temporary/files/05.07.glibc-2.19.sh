@@ -26,7 +26,7 @@ cd ../glibc-build
   libc_cv_ctors_header=yes                      \
   libc_cv_c_cleanup=yes
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

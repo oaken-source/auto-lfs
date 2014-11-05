@@ -12,7 +12,7 @@ sed -i -e '/test-bison/d' tests/Makefile.in
 
 ./configure --prefix=/usr --docdir=/usr/share/doc/flex-2.5.38
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

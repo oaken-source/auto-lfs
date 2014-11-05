@@ -10,7 +10,7 @@ cd sed-4.2.2
 
 ./configure --prefix=/usr --bindir=/bin --htmldir=/usr/share/doc/sed-4.2.2
 
-make
+make ${LFS_MFLAGS:-}
 
 make html
 

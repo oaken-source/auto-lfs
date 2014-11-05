@@ -22,8 +22,12 @@ def run_script(module):
   os.chroot("/mnt/lfs")
 
   logfile = "/logs/%s.log" % fle
+  cmd = [ '/tools/bin/env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin' ]
+  if module.params['lfs_mflags'] is not None:
+    cmd.append("LFS_MFLAGS=%s" % module.params['lfs_mflags'])
+  cmd += [ shl, '--login', '+h', '-c', "cd /build && %s %s" % (shl, fle) ]
   with open(logfile, "w") as f:
-    rc = subprocess.Popen([ '/tools/bin/env', '-i', 'HOME=/root', 'TERM=xterm', "PS1='\u:\w\$ '", 'PATH=/bin:/usr/bin:/sbin:/usr/sbin:/tools/bin', shl, '--login', '+h', '-c', "cd /build && %s %s" % (shl, fle) ], stdout=f, stderr=subprocess.STDOUT).wait()
+    rc = subprocess.Popen(cmd, stdout=f, stderr=subprocess.STDOUT).wait()
 
   os.remove("/build/%s" % fle)
   os.fchdir(real_root)
@@ -41,6 +45,7 @@ def main():
     argument_spec = dict(
       file=dict(required=True, type='str'),
       shell=dict(default='bash', type='str'),
+      lfs_mflags=dict(default=None, type='str'),
     ),
     supports_check_mode=False
   )

@@ -10,7 +10,7 @@ cd mpc-1.0.2
 
 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

@@ -29,10 +29,14 @@ def run_script(module):
 def main():
   module = AnsibleModule(
     argument_spec = dict(
-      file=dict(required=True),
+      file=dict(required=True, type='str'),
+      lfs_mflags=dict(default=None, type='str'),
     ),
     supports_check_mode=False
   )
+
+  if module.params['lfs_mflags'] is not None:
+    os.environ['LFS_MFLAGS'] = module.params['lfs_mflags']
 
   (rc, out, err) = run_script(module)
 

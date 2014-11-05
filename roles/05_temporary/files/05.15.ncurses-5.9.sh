@@ -15,7 +15,7 @@ cd ncurses-5.9
   --enable-widec      \
   --enable-overwrite
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

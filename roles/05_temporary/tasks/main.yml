@@ -10,100 +10,100 @@
     - build
 
 - name: 5.4. Binutils-2.24 - Pass 1
-  ch05script: file=05.04.binutils-2.24-pass1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.04.binutils-2.24-pass1.sh
 
 - name: 5.5. GCC-4.8.2 - Pass 1
-  ch05script: file=05.05.gcc-4.8.2-pass1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.05.gcc-4.8.2-pass1.sh
 
 - name: 5.6. Linux-3.13.3 API Headers
-  ch05script: file=05.06.linux-3.13.3-api-headers.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.06.linux-3.13.3-api-headers.sh
 
 - name: 5.7. Glibc-2.19
-  ch05script: file=05.07.glibc-2.19.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.07.glibc-2.19.sh
 
 - name: 5.8. Libstdc++-4.8.2
-  ch05script: file=05.08.libstdc++-4.8.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.08.libstdc++-4.8.2.sh
 
 - name: 5.9. Binutils-2.24 - Pass 2
-  ch05script: file=05.09.binutils-2.24-pass2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.09.binutils-2.24-pass2.sh
 
 - name: 5.10. GCC-4.8.2 - Pass 2
-  ch05script: file=05.10.gcc-4.8.2-pass2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.10.gcc-4.8.2-pass2.sh
 
 - name: 5.11. Tcl-8.6.1
-  ch05script: file=05.11.tcl-8.6.1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.11.tcl-8.6.1.sh
 
 - name: 5.12. Expect-5.45
-  ch05script: file=05.12.expect-5.45.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.12.expect-5.45.sh
 
 - name: 5.13. DejaGNU-1.5.1
-  ch05script: file=05.13.dejagnu-1.5.1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.13.dejagnu-1.5.1.sh
 
 - name: 5.14. Check-0.9.12
-  ch05script: file=05.14.check-0.9.12.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.14.check-0.9.12.sh
 
 - name: 5.15. Ncurses-5.9
-  ch05script: file=05.15.ncurses-5.9.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.15.ncurses-5.9.sh
 
 - name: 5.16. Bash-4.2
-  ch05script: file=05.16.bash-4.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.16.bash-4.2.sh
 
 - name: 5.17. Bzip2-1.0.6
-  ch05script: file=05.17.bzip2-1.0.6.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.17.bzip2-1.0.6.sh
 
 - name: 5.18. Coreutils-8.22
-  ch05script: file=05.18.coreutils-8.22.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.18.coreutils-8.22.sh
 
 - name: 5.19. Diffutils-3.3
-  ch05script: file=05.19.diffutils-3.3.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.19.diffutils-3.3.sh
 
 - name: 5.20. File-5.17
-  ch05script: file=05.20.file-5.17.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.20.file-5.17.sh
 
 - name: 5.21. Findutils-4.4.2
-  ch05script: file=05.21.findutils-4.4.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.21.findutils-4.4.2.sh
 
 - name: 5.22. Gawk-4.1.0
-  ch05script: file=05.22.gawk-4.1.0.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.22.gawk-4.1.0.sh
 
 - name: 5.23. Gettext-0.18.3.2
-  ch05script: file=05.23.gettext-0.18.3.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.23.gettext-0.18.3.2.sh
 
 - name: 5.24. Grep-2.16
-  ch05script: file=05.24.grep-2.16.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.24.grep-2.16.sh
 
 - name: 5.25. Gzip-1.6
-  ch05script: file=05.25.gzip-1.6.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.25.gzip-1.6.sh
 
 - name: 5.26. M4-1.4.17
-  ch05script: file=05.26.m4-1.4.17.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.26.m4-1.4.17.sh
 
 - name: 5.27. Make-4.0
-  ch05script: file=05.27.make-4.0.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.27.make-4.0.sh
 
 - name: 5.28. Patch-2.7.1
-  ch05script: file=05.28.patch-2.7.1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.28.patch-2.7.1.sh
 
 - name: 5.29. Perl-5.18.2
-  ch05script: file=05.29.perl-5.18.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.29.perl-5.18.2.sh
 
 - name: 5.30. Sed-4.2.2
-  ch05script: file=05.30.sed-4.2.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.30.sed-4.2.2.sh
 
 - name: 5.31. Tar-1.27.1
-  ch05script: file=05.31.tar-1.27.1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.31.tar-1.27.1.sh
 
 - name: 5.32. Texinfo-5.2
-  ch05script: file=05.32.texinfo-5.2.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.32.texinfo-5.2.sh
 
 - name: 5.33. Util-linux-2.24.1
-  ch05script: file=05.33.util-linux-2.24.1.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.33.util-linux-2.24.1.sh
 
 - name: 5.34. Xz-5.0.5
-  ch05script: file=05.34.xz-5.0.5.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.34.xz-5.0.5.sh
 
 - name: 5.35. Stripping
-  ch05script: file=05.35.stripping.sh
+  ch05script: lfs_mflags={{ LFS_MFLAGS }} file=05.35.stripping.sh
 
 - name: Change ownership of temporary system to root
   file: path={{ LFS }}/tools state=directory recurse=yes owner=root group=root

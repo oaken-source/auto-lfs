@@ -10,7 +10,7 @@ cd gmp-5.1.3
 
 ./configure --prefix=/usr --enable-cxx
 
-make
+make ${LFS_MFLAGS:-}
 
 make check 2>&1 | tee gmp-check-log
 

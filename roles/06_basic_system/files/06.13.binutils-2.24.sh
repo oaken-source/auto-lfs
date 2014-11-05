@@ -18,7 +18,7 @@ cd ../binutils-build
 
 ../binutils-2.24/configure --prefix=/usr --enable-shared
 
-make tooldir=/usr
+make tooldir=/usr ${LFS_MFLAGS:-}
 
 make check
 

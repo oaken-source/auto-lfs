@@ -16,7 +16,7 @@ sed -i -e 's@#ENCRYPT_METHOD DES@ENCRYPT_METHOD SHA512@' \
 
 ./configure --sysconfdir=/etc
 
-make
+make ${LFS_MFLAGS:-}
 
 make install
 

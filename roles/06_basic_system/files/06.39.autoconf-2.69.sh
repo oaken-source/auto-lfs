@@ -10,9 +10,9 @@ cd autoconf-2.69
 
 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
-# FIXME: investigate why #209 fails (harmless, yet annoying)
+# FISME: figure out why #209 fails
 make check || true
 
 make install

@@ -10,7 +10,7 @@ cd gzip-1.6
 
 ./configure --prefix=/usr --bindir=/bin
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

@@ -9,7 +9,7 @@ cd xz-5.0.5
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

@@ -17,7 +17,7 @@ patch -Np1 -i ../../sources/bash-4.2-fixes-12.patch
   --without-bash-malloc             \
   --with-installed-readline
 
-make
+make ${LFS_MFLAGS:-}
 
 chown -Rv nobody .
 

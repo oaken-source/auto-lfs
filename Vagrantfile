@@ -5,8 +5,8 @@
 
 VAGRANTFILE_API_VERSION = "2"
 
-VM_CPUS = "2"
-VM_MEMORY = "1024" #MB
+VM_CPUS = "8"
+VM_MEMORY = "2048" #MB
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Arch Linux

@@ -3,3 +3,4 @@
 
 LFS: /mnt/lfs
 VERS: 7.5
+LFS_MFLAGS: -j9

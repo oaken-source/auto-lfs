@@ -10,7 +10,7 @@ cd sysvinit-2.88dsf
 
 patch -Np1 -i ../../sources/sysvinit-2.88dsf-consolidated-1.patch
 
-make -C src
+make -C src ${LFS_MFLAGS:-}
 
 make -C src install
 

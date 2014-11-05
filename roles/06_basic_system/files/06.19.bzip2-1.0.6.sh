@@ -17,7 +17,7 @@ sed -i "s@(PREFIX)/man@(PREFIX)/share/man@g" Makefile
 make -f Makefile-libbz2_so
 make clean
 
-make
+make ${LFS_MFLAGS:-}
 
 make PREFIX=/usr install
 

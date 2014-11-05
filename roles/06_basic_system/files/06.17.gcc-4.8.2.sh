@@ -30,7 +30,7 @@ SED=sed                     \
   --disable-bootstrap       \
   --with-system-zlib
 
-make
+make ${LFS_MFLAGS:-}
 
 ulimit -s 32768
 

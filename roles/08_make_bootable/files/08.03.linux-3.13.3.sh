@@ -12,7 +12,7 @@ make mrproper
 
 make defconfig
 
-make
+make ${LFS_MFLAGS:-}
 
 make modules_install
 

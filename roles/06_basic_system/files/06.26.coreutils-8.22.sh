@@ -14,7 +14,7 @@ FORCE_UNSAFE_CONFIGURE=1 ./configure  \
   --prefix=/usr                       \
   --enable-no-install-program=kill,uptime
 
-make
+make ${LFS_MFLAGS:-}
 
 make NON_ROOT_USERNAME=nobody check-root
 

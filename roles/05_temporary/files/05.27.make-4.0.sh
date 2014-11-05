@@ -9,7 +9,7 @@ cd make-4.0
 
 ./configure --prefix=/tools --without-guile
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

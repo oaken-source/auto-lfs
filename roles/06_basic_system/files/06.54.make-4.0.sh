@@ -10,7 +10,7 @@ cd make-4.0
 
 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

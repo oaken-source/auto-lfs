@@ -10,7 +10,7 @@ cd xz-5.0.5
 
 ./configure --prefix=/usr --docdir=/usr/share/doc/xz-5.0.5
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

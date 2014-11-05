@@ -12,7 +12,7 @@ cd mpfr-3.1.2
   --enable-thread-safe    \
   --docdir=/usr/share/doc/mpfr-3.1.2
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

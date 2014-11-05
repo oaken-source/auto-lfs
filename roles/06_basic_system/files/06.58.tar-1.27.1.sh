@@ -15,7 +15,7 @@ FORCE_UNSAFE_CONFIGURE=1  \
   --prefix=/usr           \
   --bindir=/bin
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

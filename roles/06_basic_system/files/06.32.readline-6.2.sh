@@ -15,7 +15,7 @@ patch -Np1 -i ../../sources/readline-6.2-fixes-2.patch
 
 ./configure --prefix=/usr
 
-make SHLIB_LIBS=-lncurses
+make SHLIB_LIBS=-lncurses ${LFS_MFLAGS:-}
 
 make install
 

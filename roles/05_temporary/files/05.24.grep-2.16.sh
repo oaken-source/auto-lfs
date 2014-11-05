@@ -9,7 +9,7 @@ cd grep-2.16
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

@@ -25,7 +25,7 @@ PKG_CONFIG_PATH=/tools/lib/pkgconfig  \
   --disable-uuidd                     \
   --disable-fsck
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

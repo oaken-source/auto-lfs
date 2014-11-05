@@ -10,7 +10,7 @@ cd zlib-1.2.8
 
 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

@@ -9,7 +9,7 @@ cd patch-2.7.1
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

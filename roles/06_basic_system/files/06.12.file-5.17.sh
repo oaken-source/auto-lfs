@@ -10,7 +10,7 @@ cd file-5.17
 
 ./configure --prefix=/usr
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

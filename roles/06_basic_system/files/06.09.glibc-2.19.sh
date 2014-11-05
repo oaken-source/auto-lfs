@@ -21,7 +21,7 @@ cd ../glibc-build
   --enable-kernel=2.6.32  \
   --enable-obsolete-rpc
 
-make
+make ${LFS_MFLAGS:-}
 
 make -k check 2>&1 | tee glibc-check-log
 grep Error glibc-check-log

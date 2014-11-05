@@ -9,7 +9,7 @@ cd gawk-4.1.0
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 

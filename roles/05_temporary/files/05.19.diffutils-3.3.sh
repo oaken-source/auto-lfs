@@ -9,7 +9,7 @@ cd diffutils-3.3
 
 ./configure --prefix=/tools
 
-make
+make ${LFS_MFLAGS:-}
 
 make check
 
