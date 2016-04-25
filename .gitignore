@@ -1,7 +1,7 @@
 
-LFS-BOOK*
+*.pdf
+*.vdi
 
 .vagrant
-lfs_disk.vdi
 
 *.pyc
